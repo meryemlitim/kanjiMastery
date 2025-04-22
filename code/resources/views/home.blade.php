@@ -15,7 +15,6 @@
         <nav class="flex items-center justify-between  py-3 px-5 ">
             <a href="index.html" class="flex items-center text-primary">
                 <div class="flex items-center space-x-4">
-                    <!-- Kanji Characters with Playful Style -->
                     <div class="relative">
                         <span class="absolute text-5xl text-black-500 font-extrabold animate-bounce">漢</span>
                         <span class="text-4xl text-black-500 font-extrabold mt-10">字</span>
@@ -37,31 +36,29 @@
                 <a href="about.html" class="text-black-500 font-extrabold hover:text-pink-600">About</a>
                 <a href="contact.html" class="text-black-500 font-extrabold hover:text-pink-600">Contact</a>
             </div>
-            <a href="#" class="hidden lg:block bg-black text-white py-2 px-4 rounded hover:bg-pink-500 transition">LOG IN</a>
+            <a href="/login" class="hidden lg:block bg-black text-white py-2 px-4 rounded hover:bg-pink-500 transition">LOG IN</a>
         </nav>
     </div>
 
-        <!-- Content -->
         <div class="relative z-10 text-center text-black py-28">
-            <!-- Headings -->
             <h1 class="text-4xl sm:text-6xl font-extrabold">Welcome to:</h1>
             <br>
             <h1 class="text-4xl sm:text-6xl font-extrabold">Kanji Mastery Platform: 一筆一歩</h1>
-            <button class="bg-black text-white py-2 px-4 mt-8 w-64 text-1xl rounded-md hover:bg-pink-500 transition">
-               Get started
-            </button>           
+          
+            <button type="submit"  class="bg-black text-white py-2 px-4 mt-8 w-64 text-1xl rounded-md hover:bg-pink-500 transition">
+                <a href="/register">Get started</a>
+                
+             </button> 
          
         </div>
        
     </div>
     <section>
         <div class="max-w-5xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row">
-            <!-- Image Section -->
             <div class="md:w-1/2">
                 <img src="https://workinjapan.today/wp-content/uploads/2019/06/pixta_19882608_M-825x550.jpg" alt="Piggy Bank and Calendar" class="w-full h-full object-cover">
             </div>
             
-            <!-- Content Section -->
             <div class="md:w-1/2 p-8 flex flex-col justify-center">
                 <h2 class="text-2xl font-bold text-black-600 mb-4">What Kanji Mastery About?</h2>
                 <div class="w-12 h-1 bg-back mb-4"></div>
