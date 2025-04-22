@@ -46,7 +46,7 @@ class AuthentificationController extends Controller
 
          if(hash::check($request->password,$user->password)){
             $request->session()->put('loginId',$user->id);
-            return view('home'); 
+            return view('user-dashboard',['user'=>$user]); 
 
 
          }else{ 
@@ -60,4 +60,13 @@ class AuthentificationController extends Controller
         }
         
     }
+
+    public function logout(Request $request)
+{
+    if ($request->session()->has('loginId')) {
+        $request->session()->pull('loginId');
+    }
+    return redirect('/')->with('success', 'You have logged out successfully.');
+}
+
 }  
