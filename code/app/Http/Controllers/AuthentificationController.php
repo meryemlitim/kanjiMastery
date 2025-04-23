@@ -45,9 +45,15 @@ class AuthentificationController extends Controller
         if($user){
 
          if(hash::check($request->password,$user->password)){
-            $request->session()->put('loginId',$user->id);
+            if($user->role=='user'){
+                $request->session()->put('loginId',$user->id);
             return view('user-dashboard',['user'=>$user]); 
 
+            }else{
+                $request->session()->put('loginId',$user->id);
+            return view('admin_dashboard',['user'=>$user]); 
+
+            }
 
          }else{ 
             return back()->with('fail','password incorrect');
