@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
-use session;
 use Hash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use session;
 
 class AuthentificationController extends Controller
 {
@@ -47,12 +48,13 @@ class AuthentificationController extends Controller
          if(hash::check($request->password,$user->password)){
             if($user->role=='user'){
                 $request->session()->put('loginId',$user->id);
+
             return view('user-dashboard',['user'=>$user]); 
 
             }else{
                 $request->session()->put('loginId',$user->id);
-            return view('admin_dashboard',['user'=>$user]); 
-
+                Auth::login($user);
+                return redirect()->route('admin_dashboard');
             }
 
          }else{ 

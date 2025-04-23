@@ -151,7 +151,7 @@
       <div class="bg-white border-4 border-pink-300 rounded-xl p-6 shadow-md flex items-center justify-between">
         <div>
           <h2 class="text-xl font-bold text-pink-600 mb-1">Total Kanji</h2>
-          <p class="text-3xl font-extrabold text-gray-800">312</p>
+          <p class="text-3xl font-extrabold text-gray-800">{{ $kanji_number }}</p>
         </div>
         <div class="text-pink-400 text-5xl">🈷️</div>
       </div>
@@ -159,7 +159,7 @@
       <div class="bg-white border-4 border-pink-300 rounded-xl p-6 shadow-md flex items-center justify-between">
         <div>
           <h2 class="text-xl font-bold text-pink-600 mb-1">Registered Users</h2>
-          <p class="text-3xl font-extrabold text-gray-800">1,204</p>
+          <p class="text-3xl font-extrabold text-gray-800">{{ $user_number }}</p>
         </div>
         <div class="text-pink-400 text-5xl">👥</div>
       </div>
@@ -182,30 +182,69 @@
 <!-- Add Kanji Section -->
 <div class="bg-white p-8 rounded-2xl shadow-lg mb-12 border-l-8 border-pink-400">
     <h2 class="text-3xl font-extrabold text-pink-600 mb-6">➕ Add New Kanji</h2>
-    <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  
+    <form class="grid grid-cols-1 md:grid-cols-2 gap-6" action="{{ route('add_kanji') }}" method="post" >
+        @csrf
+
       <div>
-        <label class="block text-gray-700 font-semibold mb-1">Kanji</label>
-        <input type="text" placeholder="例: 花" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
+        <label class="block text-gray-700 font-semibold mb-1">Kanji Character</label>
+        <input name="kanji_character" type="text" placeholder="例: 花" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
       </div>
+  
       <div>
         <label class="block text-gray-700 font-semibold mb-1">Meaning</label>
-        <input type="text" placeholder="Example: Flower" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
+        <input name="meaning" type="text" placeholder="Example: Flower" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
       </div>
+  
       <div>
-        <label class="block text-gray-700 font-semibold mb-1">Reading</label>
-        <input type="text" placeholder="例: はな (hana)" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
+        <label class="block text-gray-700 font-semibold mb-1">On'yomi Reading</label>
+        <input name="reading_on" type="text" placeholder="例: カ (ka)" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
       </div>
+  
       <div>
-        <label class="block text-gray-700 font-semibold mb-1">Level (e.g., JLPT N5)</label>
-        <input type="text" placeholder="JLPT N5" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
+        <label class="block text-gray-700 font-semibold mb-1">Kun'yomi Reading</label>
+        <input name="reading_kon" type="text" placeholder="例: はな (hana)" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
       </div>
+  
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">JLPT Level</label>
+        <input name="jlpt_level" type="number" placeholder="Example: 5" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
+      </div>
+  
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">Grade Level</label>
+        <input name="grade" type="number" placeholder="Example: 1" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
+      </div>
+  
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">Radical</label>
+        <input name="radical" type="number" placeholder="Radical Number (e.g., 140)" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
+      </div>
+  
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">Stroke Order</label>
+        <textarea name="stroke_order" placeholder="Describe or paste stroke order here..." class="w-full p-3 border rounded-lg resize-none h-32 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
+      </div>
+  
+      <div class="md:col-span-2">
+        <label class="block text-gray-700 font-semibold mb-1">Memory Trick</label>
+        <textarea name="memory_trick" placeholder="Example: Think of a flower blooming for spring festival" class="w-full p-3 border rounded-lg resize-none h-28 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
+      </div>
+  
+      <div class="md:col-span-2">
+        <label class="block text-gray-700 font-semibold mb-1">Examples</label>
+        <textarea name="exemples" placeholder="花火 (はなび) - Fireworks, 花見 (はなみ) - Flower viewing" class="w-full p-3 border rounded-lg resize-none h-28 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
+      </div>
+  
       <div class="md:col-span-2 text-right">
         <button type="submit" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
           Save Kanji
         </button>
       </div>
+  
     </form>
   </div>
+  
 <!-- Kanji List Section -->
 <div class="bg-white p-8 rounded-2xl shadow-lg border-l-8 border-pink-400">
     <h2 class="text-3xl font-extrabold text-pink-600 mb-6">📚 Kanji List</h2>
@@ -222,21 +261,27 @@
           </tr>
         </thead>
         <tbody class="text-gray-700 divide-y divide-pink-100">
-          <tr>
-            <td class="py-3 px-4 text-2xl font-bold">花</td>
-            <td class="py-3 px-4">はな (hana)</td>
-            <td class="py-3 px-4">Flower</td>
-            <td class="py-3 px-4">JLPT N5</td>
-            <td class="py-3 px-4 text-center space-x-2">
-              <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded shadow">Edit</button>
-              <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded shadow">Delete</button>
-            </td>
-          </tr>
-          <!-- More rows can be added here -->
-        </tbody>
+         @foreach ($allKanji as $kanji)
+           
+            <tr>
+              <td class="py-3 px-4 text-2xl font-bold">{{ $kanji->kanji_character }}</td>
+              <td class="py-3 px-4">{{ $kanji->reading_on }}</td>
+              <td class="py-3 px-4">{{ $kanji->meaning }}</td>
+              <td class="py-3 px-4">JLPT N{{ $kanji->jlpt_level }}</td>
+              <td class="py-3 px-4 text-center space-x-2">
+                <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded shadow">Edit</button>
+                <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded shadow">Delete</button>
+              </td>
+            </tr>
+            <!-- More rows can be added here -->
+        @endforeach
+
+          </tbody>
+        
       </table>
     </div>
   </div>
+  {{-- <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/%E4%B8%89-order.gif" alt=""> --}}
        
 </div>
 
@@ -260,11 +305,12 @@
           </tr>
         </thead>
         <tbody class="text-gray-700 divide-y divide-pink-100">
+          @foreach ($all_users as $user )
           <tr>
-            <td class="py-3 px-4">Sakura Tanaka</td>
-            <td class="py-3 px-4">sakura@example.com</td>
+            <td class="py-3 px-4">{{ $user->name }}</td>
+            <td class="py-3 px-4">{{ $user->email }}</td>
             <td class="py-3 px-4">
-              <span class="bg-pink-200 text-pink-700 px-3 py-1 rounded-full text-sm font-semibold">Learner</span>
+              <span class="bg-pink-200 text-pink-700 px-3 py-1 rounded-full text-sm font-semibold">{{ $user->role }}</span>
             </td>
             <td class="py-3 px-4 text-center">
               <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-semibold">Active</span>
@@ -275,6 +321,8 @@
               <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded shadow text-sm">Delete</button>
             </td>
           </tr>
+              
+          @endforeach
   
           <!-- Add more users here as needed -->
         </tbody>
