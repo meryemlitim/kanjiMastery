@@ -470,7 +470,7 @@
             const kanji = data;
             document.getElementById("result").innerText = kanji;
 
-            fetch(`https://kanjiapi.dev/v1/kanji/${kanji}`)
+            fetch(`/kanji/${kanji}`)
                 .then(res => res.json())
                 .then(info => {
                     document.getElementById("reading").innerHTML = `

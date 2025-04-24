@@ -21,3 +21,6 @@ Route::get('/logout', [AuthentificationController::class, 'logout'])->name('logo
 
 // kanji 
 Route::post('add_kanji',[KanjiController::class,'addKanji'])->name('add_kanji');
+
+// get kanji
+Route::get('/kanji/{character}',[KanjiController::class,'getKanji']);
