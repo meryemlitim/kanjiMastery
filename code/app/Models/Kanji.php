@@ -24,4 +24,10 @@ class Kanji extends Model
         'stroke_order',
         
     ];
+
+    public function users()
+{
+    return $this->belongsToMany(User::class, 'kanji_list')->withTimestamps();
+}
+
 }

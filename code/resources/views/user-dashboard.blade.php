@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <meta name="description" content="description here">
     <meta name="keywords" content="keywords,here">
@@ -230,16 +232,23 @@
                 <div id="result"
                     class="text-xl font-semibold text-pink-600 border-2 border-pink-500 px-4 py-1 rounded-md bg-pink-100">
                 </div>
-                <button
-                    class="flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full transition duration-300 shadow">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5 13l4 4L19 7" />
-                    </svg>
-                    Save
-                </button>
+               <form action="{{ route('add_kanjiList') }}" method="POST">
+                @csrf
+                <button type="submit" 
+                class="flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full transition duration-300 shadow">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 13l4 4L19 7" />
+                </svg> 
+                Save
+            </button>
+            <input type="hidden" id="kanji_id" name="kanji_id">
+               </form>
+
             </div>
+           
+
 
             <div class="bg-gradient-to-br from-pink-100 to-pink-200 border-2 border-pink-400 p-6 rounded-3xl shadow">
                 <h2 class="text-2xl font-bold text-pink-700 mb-4">🌸 Kanji Info:</h2>
@@ -272,34 +281,16 @@
             <div class="grid grid-cols-4 gap-4  mx-20">
 
               
-              <!-- Example Kanji Card -->
+              @foreach ($savedKanjis as $kanji)
               <div class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
-                <div class="text-sm">イチ・ひと-</div>
-                <div class="text-4xl font-bold my-2">一</div>
-                <div class="uppercase text-xs tracking-widest">ONE</div>
+                <div class="text-sm">{{ $kanji->reading_on }}.{{ $kanji->reading_kon }}</div>
+                {{-- <div class="text-sm">イチ・ひと-</div> --}}
+                <div class="text-4xl font-bold my-2">{{ $kanji->kanji_character }}</div>
+                <div class="uppercase text-xs tracking-widest">{{ $kanji->meaning }}</div>
               </div>
-              
-              <div class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
-                <div class="text-sm">ニ・ふた-</div>
-                <div class="text-4xl font-bold my-2">二</div>
-                <div class="uppercase text-xs tracking-widest">TWO</div>
-              </div>
-          
-              <div class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
-                <div class="text-sm">サン・み</div>
-                <div class="text-4xl font-bold my-2">三</div>
-                <div class="uppercase text-xs tracking-widest">THREE</div>
-              </div>
-              <div class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
-                <div class="text-sm">サン・み</div>
-                <div class="text-4xl font-bold my-2">三</div>
-                <div class="uppercase text-xs tracking-widest">THREE</div>
-              </div>
-              <div class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
-                <div class="text-sm">サン・み</div>
-                <div class="text-4xl font-bold my-2">三</div>
-                <div class="uppercase text-xs tracking-widest">THREE</div>
-              </div>
+                  
+              @endforeach
+            
           
               
             </div>
@@ -473,7 +464,12 @@
             fetch(`/kanji/${kanji}`)
                 .then(res => res.json())
                 .then(info => {
-                    document.getElementById("reading").innerHTML = `
+                    currentKanjiId = info.id;
+                    console.log(currentKanjiId)
+                    localStorage.setItem("kanji_id",currentKanjiId);
+                    document.getElementById('kanji_id').value= currentKanjiId
+
+            document.getElementById("reading").innerHTML = `
               <strong>Kanji:</strong> ${info.kanji}<br>
               <strong>JLPT:</strong> N${info.jlpt}<br>
               <strong>Meanings:</strong> ${info.meanings.slice(0, 3).join(', ')}<br>
@@ -535,7 +531,15 @@
             canvas.erase();
             document.getElementById("result").innerText = "";
             document.getElementById("reading").innerHTML = "";
-        }
+            localStorage.removeItem("kanji_id");
+
+            }
+
+
+
+         
+
+
     </script>
 
 

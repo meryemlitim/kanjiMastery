@@ -45,4 +45,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function savedKanjis()
+{
+    return $this->belongsToMany(Kanji::class, 'kanji_list')->withTimestamps();
+}
+
 }
