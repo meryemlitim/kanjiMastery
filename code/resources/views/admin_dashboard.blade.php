@@ -117,14 +117,14 @@
                         <a href="#"
                             class="block py-1 md:py-3 pl-1 align-middle text-pink-600 no-underline hover:text-pink-900 border-b-2 border-white hover:border-pink-500">
                             <i class="fa fa-pencil-alt fa-fw mr-3"></i>
-                            <span class="pb-1 md:pb-0 text-sm">draw kanji</span>
+                            <span class="pb-1 md:pb-0 text-sm">manage kanji</span>
                         </a>
                     </li>
                     <li id="category_click" class="mr-6 my-2 md:my-0">
                         <a href="#" 
                             class="block py-1 md:py-3 pl-1 align-middle text-pink-600 no-underline hover:text-pink-900 border-b-2 border-white hover:border-pink-500">
                             <i class="fa fa-list fa-fw mr-3"></i>
-                            <span class="pb-1 md:pb-0 text-sm">my list</span>
+                            <span class="pb-1 md:pb-0 text-sm">manage users</span>
                         </a>
                     </li>
 
@@ -140,199 +140,198 @@
     <!--Container-->
     <div class="w-full mx-auto pt-20">
 
-        <div id="home" class="w-full px-6 py-10 bg-gradient-to-br from-pink-50 to-pink-100 min-h-screen text-gray-800">
-
-                <!-- Welcome Header -->
-                <div class="text-center mb-12">
-                  <h1 class="text-4xl font-extrabold text-pink-600 mb-2 mt-8">Welcome back, Kanji Warrior! 🥋</h1>
-                  <p class="text-lg text-gray-600">Keep going — you're mastering kanji step by step!</p>
-                  <div class="mt-4 inline-block bg-yellow-300 text-yellow-900 font-semibold px-4 py-1 rounded-full shadow">Level 5</div>
-                </div>
-              
-                <!-- Progress & XP Section -->
-                <div class="mb-10">
-                  <div class="bg-white p-6 rounded-2xl shadow-lg">
-                    <div class="flex justify-between items-center mb-4">
-                      <h2 class="text-2xl font-bold text-pink-500">🔥 Your Streak & XP</h2>
-                      <span class="text-gray-600">Streak: <span class="font-bold text-pink-600">12 days</span></span>
-                    </div>
-                    <div class="w-full bg-pink-200 h-4 rounded-full overflow-hidden shadow-inner">
-                      <div class="bg-pink-500 h-full w-[65%]"></div>
-                    </div>
-                    <p class="mt-2 text-sm text-right text-gray-500">XP: 650 / 1000</p>
-                  </div>
-                </div>
-              
-                <!-- Stats Section -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                  <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-pink-400">
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2">📘 Total Kanji Learned</h3>
-                    <p class="text-3xl font-bold text-pink-600">120</p>
-                  </div>
-                  <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-400">
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2">🎯 Kanji Mastered</h3>
-                    <p class="text-3xl font-bold text-green-600">85</p>
-                  </div>
-                  <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-yellow-400">
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2">🔥 Streak</h3>
-                    <p class="text-3xl font-bold text-yellow-600">12 days</p>
-                  </div>
-                  <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-400">
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2">⚡ Current XP</h3>
-                    <p class="text-3xl font-bold text-blue-600">650</p>
-                  </div>
-                </div>
-              
-                <!-- Struggled Kanji Section -->
-                <div class="bg-white p-6 rounded-2xl shadow-lg border border-pink-200">
-                  <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-2xl font-bold text-pink-500">🧐 Struggled With</h2>
-                    <button class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full transition shadow">
-                      Review Again
-                    </button>
-                  </div>
-                  <div class="flex gap-4 flex-wrap">
-                    <!-- Struggled Kanji Cards -->
-                    <div class="bg-pink-100 border-2 border-pink-400 text-pink-700 font-bold text-2xl px-4 py-3 rounded-lg shadow">悩</div>
-                    <div class="bg-pink-100 border-2 border-pink-400 text-pink-700 font-bold text-2xl px-4 py-3 rounded-lg shadow">難</div>
-                    <div class="bg-pink-100 border-2 border-pink-400 text-pink-700 font-bold text-2xl px-4 py-3 rounded-lg shadow">忘</div>
-                    <!-- Add more as needed -->
-                  </div>
-                </div>
-              
+        <div id="home" class="hidden w-full px-6 mb-16 md:py-6 md:mt-8 text-gray-800 leading-relaxed relative">
+<!-- Admin Dashboard Home -->
+<div class="w-full px-6 py-10 md:py-16 bg-pink-50 rounded-2xl shadow-lg">
+    <h1 class="text-4xl font-extrabold text-pink-600 mb-6 text-center">👑 Welcome, Admin!</h1>
+    <p class="text-center text-gray-700 mb-10 text-lg">Here’s a quick overview of your kingdom — keep guiding learners to Kanji mastery!</p>
+  
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+      <div class="bg-white border-4 border-pink-300 rounded-xl p-6 shadow-md flex items-center justify-between">
+        <div>
+          <h2 class="text-xl font-bold text-pink-600 mb-1">Total Kanji</h2>
+          <p class="text-3xl font-extrabold text-gray-800">{{ $kanji_number }}</p>
         </div>
+        <div class="text-pink-400 text-5xl">🈷️</div>
+      </div>
+  
+      <div class="bg-white border-4 border-pink-300 rounded-xl p-6 shadow-md flex items-center justify-between">
+        <div>
+          <h2 class="text-xl font-bold text-pink-600 mb-1">Registered Users</h2>
+          <p class="text-3xl font-extrabold text-gray-800">{{ $user_number }}</p>
+        </div>
+        <div class="text-pink-400 text-5xl">👥</div>
+      </div>
+    </div>
+  
+    <!-- Management Buttons -->
+    <div class="flex flex-col md:flex-row gap-6 justify-center">
+      <button class="bg-pink-500 hover:bg-pink-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition">
+        📘 Manage Kanjis
+      </button>
+      <button class="bg-pink-500 hover:bg-pink-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition">
+        👤 Manage Users
+      </button>
+    </div>
+  </div>
+          </div>
 
         <div id="user"
     class="hidden w-full px-6 mb-16 md:py-6 md:mt-8 text-gray-800 leading-relaxed relative">
+<!-- Add Kanji Section -->
+<div class="bg-white p-8 rounded-2xl shadow-lg mb-12 border-l-8 border-pink-400">
+    <h2 class="text-3xl font-extrabold text-pink-600 mb-6">➕ Add New Kanji</h2>
+  
+    <form class="grid grid-cols-1 md:grid-cols-2 gap-6" action="{{ route('add_kanji') }}" method="post" >
+        @csrf
 
-    <div class="flex flex-col lg:flex-row gap-12 items-start justify-center">
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">Kanji Character</label>
+        <input name="kanji_character" type="text" placeholder="例: 花" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
+      </div>
+  
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">Meaning</label>
+        <input name="meaning" type="text" placeholder="Example: Flower" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
+      </div>
+  
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">On'yomi Reading</label>
+        <input name="reading_on" type="text" placeholder="例: カ (ka)" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
+      </div>
+  
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">Kun'yomi Reading</label>
+        <input name="reading_kon" type="text" placeholder="例: はな (hana)" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
+      </div>
+  
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">JLPT Level</label>
+        <input name="jlpt_level" type="number" placeholder="Example: 5" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
+      </div>
+  
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">Grade Level</label>
+        <input name="grade" type="number" placeholder="Example: 1" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
+      </div>
+  
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">Radical</label>
+        <input name="radical" type="number" placeholder="Radical Number (e.g., 140)" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
+      </div>
+  
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">Stroke Order</label>
+        <textarea name="stroke_order" placeholder="Describe or paste stroke order here..." class="w-full p-3 border rounded-lg resize-none h-32 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
+      </div>
+  
+      <div class="md:col-span-2">
+        <label class="block text-gray-700 font-semibold mb-1">Memory Trick</label>
+        <textarea name="memory_trick" placeholder="Example: Think of a flower blooming for spring festival" class="w-full p-3 border rounded-lg resize-none h-28 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
+      </div>
+  
+      <div class="md:col-span-2">
+        <label class="block text-gray-700 font-semibold mb-1">Examples</label>
+        <textarea name="exemples" placeholder="花火 (はなび) - Fireworks, 花見 (はなみ) - Flower viewing" class="w-full p-3 border rounded-lg resize-none h-28 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
+      </div>
+  
+      <div class="md:col-span-2 text-right">
+        <button type="submit" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
+          Save Kanji
+        </button>
+      </div>
+  
+    </form>
+  </div>
+  
+<!-- Kanji List Section -->
+<div class="bg-white p-8 rounded-2xl shadow-lg border-l-8 border-pink-400">
+    <h2 class="text-3xl font-extrabold text-pink-600 mb-6">📚 Kanji List</h2>
+  
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white border rounded-lg overflow-hidden">
+        <thead class="bg-pink-100 text-pink-700 font-semibold">
+          <tr>
+            <th class="py-3 px-4 text-left">Kanji</th>
+            <th class="py-3 px-4 text-left">Reading</th>
+            <th class="py-3 px-4 text-left">Meaning</th>
+            <th class="py-3 px-4 text-left">Level</th>
+            <th class="py-3 px-4 text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700 divide-y divide-pink-100">
+         @foreach ($allKanji as $kanji)
+           
+            <tr>
+              <td class="py-3 px-4 text-2xl font-bold">{{ $kanji->kanji_character }}</td>
+              <td class="py-3 px-4">{{ $kanji->reading_on }}</td>
+              <td class="py-3 px-4">{{ $kanji->meaning }}</td>
+              <td class="py-3 px-4">JLPT N{{ $kanji->jlpt_level }}</td>
+              <td class="py-3 px-4 text-center space-x-2">
+                <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded shadow">Edit</button>
+                <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded shadow">Delete</button>
+              </td>
+            </tr>
+            <!-- More rows can be added here -->
+        @endforeach
 
-        <!-- Canvas Section -->
-        <div class="flex flex-col items-center gap-6 bg-white p-6 rounded-3xl shadow-xl border border-pink-200">
-            <canvas id="canvas" width="450" height="450"
-                class="rounded-2xl border-4 border-pink-400 shadow-inner cursor-crosshair bg-white"></canvas>
-
-            <div class="flex gap-4">
-                <button onclick="recognizeKanji()"
-                    class="bg-gradient-to-r from-blue-400 to-blue-600 text-white px-5 py-2 rounded-full shadow hover:from-blue-500 hover:to-blue-700 transition duration-300">
-                    🔍 Recognize
-                </button>
-                <button onclick="eraseAll()"
-                    class="bg-gradient-to-r from-red-400 to-red-600 text-white px-5 py-2 rounded-full shadow hover:from-red-500 hover:to-red-700 transition duration-300">
-                    ❌ Erase
-                </button>
-            </div>
-        </div>
-
-        <!-- Info Section -->
-        <div class="flex flex-col gap-6 w-full max-w-md">
-            <div class="flex justify-between items-center bg-white p-4 rounded-2xl shadow border border-pink-300">
-                <div id="result"
-                    class="text-xl font-semibold text-pink-600 border-2 border-pink-500 px-4 py-1 rounded-md bg-pink-100">
-                </div>
-                <button
-                    class="flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full transition duration-300 shadow">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5 13l4 4L19 7" />
-                    </svg>
-                    Save
-                </button>
-            </div>
-
-            <div class="bg-gradient-to-br from-pink-100 to-pink-200 border-2 border-pink-400 p-6 rounded-3xl shadow">
-                <h2 class="text-2xl font-bold text-pink-700 mb-4">🌸 Kanji Info:</h2>
-                <div id="reading" class="text-lg text-gray-800 leading-relaxed text-left space-y-2">
-                </div>
-            </div>
-        </div>
-
+          </tbody>
+        
+      </table>
     </div>
+  </div>
+  {{-- <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/%E4%B8%89-order.gif" alt=""> --}}
+       
 </div>
 
 
 
-        <div id="category" class=" hidden w-full md:py-6 md:mt-8 mb-16 text-gray-800">
-          <div class="flex justify-end  space-x-4 mb-8 mr-8">
-            <button id="flashcard_click" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition flex items-center space-x-2">
-              <i class="fas fa-clone"></i>
-              <span>Flash Cards</span>
-            </button>
-            <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition flex items-center space-x-2">
-              <i class="fas fa-brain"></i>
-              <span>Memory Game</span>
-            </button>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition flex items-center space-x-2">
-              <i class="fas fa-question-circle"></i>
-              <span>Quiz</span>
-            </button>
-          </div>
-           
-            <div class="grid grid-cols-4 gap-4  mx-20">
-
-              
-              <!-- Example Kanji Card -->
-              <div class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
-                <div class="text-sm">イチ・ひと-</div>
-                <div class="text-4xl font-bold my-2">一</div>
-                <div class="uppercase text-xs tracking-widest">ONE</div>
-              </div>
-              
-              <div class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
-                <div class="text-sm">ニ・ふた-</div>
-                <div class="text-4xl font-bold my-2">二</div>
-                <div class="uppercase text-xs tracking-widest">TWO</div>
-              </div>
+        <div id="category" class="hidden w-full px-6 mb-16 md:py-6 md:mt-8 text-gray-800 leading-relaxed relative">
           
-              <div class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
-                <div class="text-sm">サン・み</div>
-                <div class="text-4xl font-bold my-2">三</div>
-                <div class="uppercase text-xs tracking-widest">THREE</div>
-              </div>
-              <div class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
-                <div class="text-sm">サン・み</div>
-                <div class="text-4xl font-bold my-2">三</div>
-                <div class="uppercase text-xs tracking-widest">THREE</div>
-              </div>
-              <div class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
-                <div class="text-sm">サン・み</div>
-                <div class="text-4xl font-bold my-2">三</div>
-                <div class="uppercase text-xs tracking-widest">THREE</div>
-              </div>
-          
+<!-- Manage Users Section -->
+<div class="bg-white p-8 rounded-2xl shadow-lg border-l-8 border-pink-400">
+    <h2 class="text-3xl font-extrabold text-pink-600 mb-6">👥 Manage Users</h2>
+  
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white border rounded-lg overflow-hidden">
+        <thead class="bg-pink-100 text-pink-700 font-semibold">
+          <tr>
+            <th class="py-3 px-4 text-left">Name</th>
+            <th class="py-3 px-4 text-left">Email</th>
+            <th class="py-3 px-4 text-left">Role</th>
+            <th class="py-3 px-4 text-center">Status</th>
+            <th class="py-3 px-4 text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700 divide-y divide-pink-100">
+          @foreach ($all_users as $user )
+          <tr>
+            <td class="py-3 px-4">{{ $user->name }}</td>
+            <td class="py-3 px-4">{{ $user->email }}</td>
+            <td class="py-3 px-4">
+              <span class="bg-pink-200 text-pink-700 px-3 py-1 rounded-full text-sm font-semibold">{{ $user->role }}</span>
+            </td>
+            <td class="py-3 px-4 text-center">
+              <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-semibold">Active</span>
+            </td>
+            <td class="py-3 px-4 text-center space-x-2">
+              <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded shadow text-sm">View</button>
+              <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded shadow text-sm">Edit</button>
+              <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded shadow text-sm">Delete</button>
+            </td>
+          </tr>
               
-            </div>
-
+          @endforeach
+  
+          <!-- Add more users here as needed -->
+        </tbody>
+      </table>
+    </div>
   </div>
+    </div>
   <div id="flashcard" class=" hidden w-full md:py-6 md:mt-8 mb-16 text-gray-800 ">
-<!-- Flashcard Section -->
-    <h2 class="text-4xl font-extrabold text-center text-pink-600 mb-10 drop-shadow">🃏 Master Your Kanji</h2>
-  
-    <div class="flex justify-center">
-      <div class="relative w-[28rem] h-[20rem] bg-white rounded-3xl shadow-2xl border-4 border-pink-400 cursor-pointer transform transition hover:scale-105 group">
-        <!-- Front of the card -->
-        <div class="absolute inset-0 flex items-center justify-center text-[6rem] font-extrabold text-pink-600 group-hover:hidden">
-          花
-        </div> 
-                                     
-        <!-- Back of the card -->
-        <div class="absolute inset-0 flex flex-col justify-center items-center hidden group-hover:flex text-center p-6 bg-pink-50 rounded-3xl">
-          <p class="text-2xl font-bold text-pink-500 mb-2">Reading: はな (hana)</p>
-          <p class="text-lg text-gray-700 mb-4">Meaning: Flower</p>
-          <span class="inline-block bg-pink-200 text-pink-800 px-4 py-1 rounded-full text-sm font-semibold">JLPT N5</span>
-        </div>
-      </div>
-    </div>
-  
-    <div class="flex justify-center mt-10 space-x-6">
-      <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold px-6 py-3 rounded-full shadow-lg transition-all">
-        ⬅ Previous
-      </button>
-      <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold px-6 py-3 rounded-full shadow-lg transition-all">
-        Next ➡
-      </button>
-    </div>
+
   
   
   </div>
@@ -470,7 +469,7 @@
             const kanji = data;
             document.getElementById("result").innerText = kanji;
 
-            fetch(`/kanji/${kanji}`)
+            fetch(`https://kanjiapi.dev/v1/kanji/${kanji}`)
                 .then(res => res.json())
                 .then(info => {
                     document.getElementById("reading").innerHTML = `
