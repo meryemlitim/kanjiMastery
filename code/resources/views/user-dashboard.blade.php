@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <meta name="description" content="description here">
     <meta name="keywords" content="keywords,here">
@@ -230,16 +232,23 @@
                 <div id="result"
                     class="text-xl font-semibold text-pink-600 border-2 border-pink-500 px-4 py-1 rounded-md bg-pink-100">
                 </div>
-                <button
-                    class="flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full transition duration-300 shadow">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5 13l4 4L19 7" />
-                    </svg>
-                    Save
-                </button>
+               <form action="{{ route('add_kanjiList') }}" method="POST">
+                @csrf
+                <button type="submit" 
+                class="flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full transition duration-300 shadow">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 13l4 4L19 7" />
+                </svg> 
+                Save
+            </button>
+            <input type="hidden" id="kanji_id" name="kanji_id">
+               </form>
+
             </div>
+           
+
 
             <div class="bg-gradient-to-br from-pink-100 to-pink-200 border-2 border-pink-400 p-6 rounded-3xl shadow">
                 <h2 class="text-2xl font-bold text-pink-700 mb-4">🌸 Kanji Info:</h2>
@@ -272,34 +281,16 @@
             <div class="grid grid-cols-4 gap-4  mx-20">
 
               
-              <!-- Example Kanji Card -->
+              @foreach ($savedKanjis as $kanji)
               <div class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
-                <div class="text-sm">イチ・ひと-</div>
-                <div class="text-4xl font-bold my-2">一</div>
-                <div class="uppercase text-xs tracking-widest">ONE</div>
+                <div class="text-sm">{{ $kanji->reading_on }}.{{ $kanji->reading_kon }}</div>
+                {{-- <div class="text-sm">イチ・ひと-</div> --}}
+                <div class="text-4xl font-bold my-2">{{ $kanji->kanji_character }}</div>
+                <div class="uppercase text-xs tracking-widest">{{ $kanji->meaning }}</div>
               </div>
-              
-              <div class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
-                <div class="text-sm">ニ・ふた-</div>
-                <div class="text-4xl font-bold my-2">二</div>
-                <div class="uppercase text-xs tracking-widest">TWO</div>
-              </div>
-          
-              <div class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
-                <div class="text-sm">サン・み</div>
-                <div class="text-4xl font-bold my-2">三</div>
-                <div class="uppercase text-xs tracking-widest">THREE</div>
-              </div>
-              <div class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
-                <div class="text-sm">サン・み</div>
-                <div class="text-4xl font-bold my-2">三</div>
-                <div class="uppercase text-xs tracking-widest">THREE</div>
-              </div>
-              <div class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
-                <div class="text-sm">サン・み</div>
-                <div class="text-4xl font-bold my-2">三</div>
-                <div class="uppercase text-xs tracking-widest">THREE</div>
-              </div>
+                  
+              @endforeach
+            
           
               
             </div>
@@ -309,27 +300,15 @@
 <!-- Flashcard Section -->
     <h2 class="text-4xl font-extrabold text-center text-pink-600 mb-10 drop-shadow">🃏 Master Your Kanji</h2>
   
-    <div class="flex justify-center">
-      <div class="relative w-[28rem] h-[20rem] bg-white rounded-3xl shadow-2xl border-4 border-pink-400 cursor-pointer transform transition hover:scale-105 group">
-        <!-- Front of the card -->
-        <div class="absolute inset-0 flex items-center justify-center text-[6rem] font-extrabold text-pink-600 group-hover:hidden">
-          花
-        </div> 
-                                     
-        <!-- Back of the card -->
-        <div class="absolute inset-0 flex flex-col justify-center items-center hidden group-hover:flex text-center p-6 bg-pink-50 rounded-3xl">
-          <p class="text-2xl font-bold text-pink-500 mb-2">Reading: はな (hana)</p>
-          <p class="text-lg text-gray-700 mb-4">Meaning: Flower</p>
-          <span class="inline-block bg-pink-200 text-pink-800 px-4 py-1 rounded-full text-sm font-semibold">JLPT N5</span>
-        </div>
-      </div>
+    <div class="carousel flex justify-center">
+        
     </div>
   
     <div class="flex justify-center mt-10 space-x-6">
-      <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold px-6 py-3 rounded-full shadow-lg transition-all">
+      <button class="prev bg-pink-500 hover:bg-pink-600 text-white font-bold px-6 py-3 rounded-full shadow-lg transition-all">
         ⬅ Previous
       </button>
-      <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold px-6 py-3 rounded-full shadow-lg transition-all">
+      <button class="next bg-pink-500 hover:bg-pink-600 text-white font-bold px-6 py-3 rounded-full shadow-lg transition-all">
         Next ➡
       </button>
     </div>
@@ -473,7 +452,12 @@
             fetch(`/kanji/${kanji}`)
                 .then(res => res.json())
                 .then(info => {
-                    document.getElementById("reading").innerHTML = `
+                    currentKanjiId = info.id;
+                    console.log(currentKanjiId)
+                    localStorage.setItem("kanji_id",currentKanjiId);
+                    document.getElementById('kanji_id').value= currentKanjiId
+
+            document.getElementById("reading").innerHTML = `
               <strong>Kanji:</strong> ${info.kanji}<br>
               <strong>JLPT:</strong> N${info.jlpt}<br>
               <strong>Meanings:</strong> ${info.meanings.slice(0, 3).join(', ')}<br>
@@ -535,7 +519,63 @@
             canvas.erase();
             document.getElementById("result").innerText = "";
             document.getElementById("reading").innerHTML = "";
-        }
+            localStorage.removeItem("kanji_id");
+
+            }
+
+// flashcard 
+           
+    let cards = @json($flashcardCard);
+    console.log(cards);
+
+    let currentCard=0;
+
+    carousel=document.querySelector(".carousel");
+    prev=document.querySelector(".prev");
+    next=document.querySelector(".next");
+   renderCard();
+   
+function renderCard(){
+   carousel.innerHTML=`
+    <div class="relative w-[28rem] h-[20rem] bg-white rounded-3xl shadow-2xl border-4 border-pink-400 cursor-pointer transform transition hover:scale-105 group">
+        <!-- Front of the card -->
+        <div class="absolute inset-0 flex items-center justify-center text-[6rem] font-extrabold text-pink-600 group-hover:hidden">
+          ${cards[currentCard].kanji}
+        </div> 
+                                     
+        <!-- Back of the card -->
+        <div class="absolute inset-0 flex flex-col justify-center items-center hidden group-hover:flex text-center p-6 bg-pink-50 rounded-3xl">
+          <p class="text-2xl font-bold text-pink-500 mb-2">Reading on: ${cards[currentCard].on_readings}</p>
+          <p class="text-2xl font-bold text-pink-500 mb-2">Reading kun: ${cards[currentCard].kun_readings}</p>
+          <p class="text-lg text-gray-700 mb-4">Meaning: ${cards[currentCard].meanings} </p>
+          <span class="inline-block bg-pink-200 text-pink-800 px-4 py-1 rounded-full text-sm font-semibold">JLPT N${cards[currentCard].jlpt}</span>
+        </div>
+      </div>
+
+   `
+  
+
+}
+next.addEventListener('click',function(e){
+    if(currentCard>=cards.length){
+        return;
+    }
+    currentCard++
+    renderCard();
+
+})
+
+prev.addEventListener('click',function(e){
+    if(currentCard<=0){
+        return;
+    }
+    currentCard--;
+    renderCard();
+
+})
+     
+
+
     </script>
 
 

@@ -32,8 +32,10 @@ class KanjiController extends Controller
         $kanji=Kanji::where('kanji_character',$character)->first();
         if(!$kanji){
             return response()->json(['error' => 'Kanji not found'], 404);
-        }
+        }  
+
         return response()->json([
+            'id'=>$kanji->id,
             'kanji' => $kanji->kanji_character,
             'jlpt' => $kanji->jlpt_level,
             'meanings' => explode(',', $kanji->meaning),
@@ -43,5 +45,7 @@ class KanjiController extends Controller
         ]);
     }
 
+    
+   
 
 }

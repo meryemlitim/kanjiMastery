@@ -17,7 +17,7 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
+    protected $fillable = [ 
         'name',
         'email',
         'password',
@@ -45,4 +45,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function savedKanjis()
+{
+    return $this->belongsToMany(Kanji::class, 'kanji_list')->withTimestamps();
+}
+
 }
