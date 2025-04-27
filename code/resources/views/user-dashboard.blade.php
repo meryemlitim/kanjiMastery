@@ -254,9 +254,13 @@
                 <h2 class="text-2xl font-bold text-pink-700 mb-4">🌸 Kanji Info:</h2>
                 <div id="reading" class="text-lg text-gray-800 leading-relaxed text-left space-y-2">
                 </div>
+               
+            </div>
+            <div id="strok_order" class="flex gap-">
+
             </div>
         </div>
-
+        
     </div>
 </div>
 
@@ -272,7 +276,7 @@
               <i class="fas fa-brain"></i>
               <span>Memory Game</span>
             </button>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition flex items-center space-x-2">
+            <button id="quiz_click" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition flex items-center space-x-2">
               <i class="fas fa-question-circle"></i>
               <span>Quiz</span>
             </button>
@@ -291,8 +295,6 @@
                   
               @endforeach
             
-          
-              
             </div>
 
   </div>
@@ -301,7 +303,7 @@
     <h2 class="text-4xl font-extrabold text-center text-pink-600 mb-10 drop-shadow">🃏 Master Your Kanji</h2>
   
     <div class="carousel flex justify-center">
-        
+        <h1 class="text-pink-500">no cards added </h1>
     </div>
   
     <div class="flex justify-center mt-10 space-x-6">
@@ -314,6 +316,120 @@
     </div>
   
   
+  </div>
+  <div id="quiz_menu" class="hidden w-full py-8 mt-12 mb-16 text-gray-800">
+    <h2 class="text-3xl font-extrabold text-pink-600 mb-10 text-center">📝 Test Your Kanji Skills</h2>
+  
+    <div class="flex flex-col items-center gap-6">
+      <!-- Guess Meaning Quiz -->
+      <button id="click_quiz_meaning" class="flex items-center gap-4 bg-white hover:bg-pink-100 text-pink-600 font-semibold py-4 px-8 rounded-2xl shadow-md text-lg transition w-full max-w-md border-l-8 border-pink-400">
+        <i class="fas fa-question-circle text-pink-500 text-2xl"></i>
+        <span>Guess the Kanji Meaning</span>
+      </button>
+  
+      <!-- Guess Reading Quiz -->
+      <button id="click_quiz_reading" class="flex items-center gap-4 bg-white hover:bg-pink-100 text-pink-600 font-semibold py-4 px-8 rounded-2xl shadow-md text-lg transition w-full max-w-md border-l-8 border-pink-400">
+        <i class="fas fa-book-open text-pink-500 text-2xl"></i>
+        <span>Guess the Kanji Reading</span>
+      </button>
+    </div>
+  </div>
+  
+  
+  <div id="quiz_meaning" class=" hidden w-full md:py-6 md:mt-8 mb-16 text-gray-800 ">
+    <h2 class="text-3xl font-extrabold text-pink-600 mb-10 text-center">📝 Guess the Kanji Meaning</h2>
+
+
+    <div class="bg-white p-8 rounded-2xl shadow-lg mb-12 mr-5 ml-5 border-4  border-pink-400">
+      
+        <!-- Question -->
+        <div class="mb-8">
+          <p class="text-xl font-bold text-gray-800 text-center">
+            What is the meaning of the kanji <span class="text-pink-500 text-4xl">花</span>?
+          </p>
+        </div>
+      
+        <!-- Answers -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            A) River
+          </button>
+      
+          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            B) Mountain
+          </button>
+      
+          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            C) Flower
+          </button>
+      
+          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            D) Tree
+          </button>
+        </div>
+      
+        <!-- Navigation Buttons -->
+        <div class="flex justify-between mt-10">
+          <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
+            Previous
+          </button>
+          <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
+            Next
+          </button>
+        </div>
+      </div>
+      
+  </div>
+  <div id="quiz_reading" class=" hidden w-full md:py-6 md:mt-8 mb-16 text-gray-800 ">
+    <h2 class="text-3xl font-extrabold text-pink-600 mb-10 text-center">📝 Guess the Kanji Reading</h2>
+
+
+    <div class="bg-white p-8 rounded-2xl shadow-lg mb-12 mr-5 ml-5 border-4  border-pink-400">
+      
+        <!-- Question -->
+        <div class="mb-8">
+          <p class="text-xl font-bold text-gray-800 text-center">
+            What is the reading of the kanji <span class="text-pink-500 text-4xl">花</span>?
+          </p>
+        </div>
+      
+        <!-- Answers -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            A)やま 
+          </button>
+      
+          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            B) かわ
+          </button>
+      
+          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            C) き
+          </button>
+      
+          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            D) はな
+          </button>
+        </div>
+      
+        <!-- Navigation Buttons -->
+        <div class="flex justify-between mt-10">
+          <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
+            Previous
+          </button>
+          <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
+            Next
+          </button>
+        </div>
+      </div>
+      {{-- <div class="flex justify-center mt-10">
+        <button id="quiz_menu" class="flex items-center gap-3 bg-white hover:bg-pink-100 text-pink-600 font-bold py-3 px-8 rounded-2xl shadow-md text-lg transition border-l-8 border-pink-400">
+          <i class="fas fa-arrow-left text-pink-500 text-2xl"></i>
+          <span>Back to Menu</span>
+        </button>
+      </div> --}}
+      
+      
   </div>
     </div>
     <!--/container-->
@@ -385,11 +501,17 @@
         const home = document.getElementById("home");
         const category = document.getElementById("category");
         const user = document.getElementById("user");
+        const quiz = document.getElementById("quiz_menu");
         const flashcard = document.getElementById("flashcard");
+        const quiz_meaning = document.getElementById("quiz_meaning");
+        const quiz_reading = document.getElementById("quiz_reading");
         const home_click = document.getElementById("home_click");
         const flashcard_click = document.getElementById("flashcard_click");
         const category_click = document.getElementById("category_click");
         const user_click = document.getElementById("user_click");
+        const quiz_click = document.getElementById("quiz_click");
+        const click_quiz_meaning = document.getElementById("click_quiz_meaning");
+        const click_quiz_reading = document.getElementById("click_quiz_reading");
 
         // Initially, the category should be hidden, and home should be visible.
         home.classList.remove('hidden');
@@ -403,6 +525,9 @@
             category.classList.add('hidden');
             user.classList.add('hidden');
             flashcard.classList.add('hidden');
+            quiz.classList.add('hidden');
+            quiz_meaning.classList.add('hidden');
+            quiz_reading.classList.add('hidden');
         });
 
         category_click.addEventListener("click", () => {
@@ -411,6 +536,12 @@
             category.classList.remove('hidden');
             user.classList.add('hidden');
             flashcard.classList.add('hidden');
+            quiz.classList.add('hidden');
+            quiz_meaning.classList.add('hidden');
+            quiz_reading.classList.add('hidden');
+
+
+
 
         });
         user_click.addEventListener("click", () => {
@@ -419,6 +550,12 @@
             category.classList.add('hidden');
             user.classList.remove('hidden');
             flashcard.classList.add('hidden');
+            quiz.classList.add('hidden');
+            quiz_meaning.classList.add('hidden');
+            quiz_reading.classList.add('hidden');
+
+
+
 
         });
         flashcard_click.addEventListener("click", () => {
@@ -427,6 +564,54 @@
             category.classList.add('hidden');
             user.classList.add('hidden');
             flashcard.classList.remove('hidden');
+            quiz.classList.add('hidden');
+            quiz_meaning.classList.add('hidden');
+            quiz_reading.classList.add('hidden');
+
+
+
+
+        });
+        quiz_click.addEventListener("click", () => {
+
+            home.classList.add('hidden');
+            category.classList.add('hidden');
+            user.classList.add('hidden');
+            quiz.classList.remove('hidden');
+            flashcard.classList.add('hidden');
+            quiz_meaning.classList.add('hidden');
+            quiz_reading.classList.add('hidden');
+
+
+
+
+        });
+        click_quiz_meaning.addEventListener("click", () => {
+
+            home.classList.add('hidden');
+            category.classList.add('hidden');
+            user.classList.add('hidden');
+            quiz_meaning.classList.remove('hidden');
+            flashcard.classList.add('hidden');
+            quiz.classList.add('hidden');
+            quiz_reading.classList.add('hidden');
+
+
+
+
+        });
+        click_quiz_reading.addEventListener("click", () => {
+
+            home.classList.add('hidden');
+            category.classList.add('hidden');
+            user.classList.add('hidden');
+            quiz_reading.classList.remove('hidden');
+            flashcard.classList.add('hidden');
+            quiz.classList.add('hidden');
+            quiz_meaning.classList.add('hidden');
+
+
+
 
         });
 
@@ -465,12 +650,19 @@
               <strong>Kunyomi:</strong> ${info.kun_readings.join(', ') || 'N/A'}<br>
               <strong>Grade:</strong> ${info.grade || 'N/A'}
             `;
+            document.getElementById('strok_order').innerHTML=`
+                              <img class="h-48 w-48 object-cover ..." src="${info.stroke_order}" />              
+                              <img class="h-48 w-48 object-cover ..." src="${info.memory_trick}" />              
+
+
+                `;
                 })
                 .catch(() => {
                     document.getElementById("reading").innerText = "❌ This is not a Kanji.";
                     document.getElementById("result").innerText = "";
 
                 });
+               
         });
 
         let paintMode = false;
@@ -519,7 +711,8 @@
             canvas.erase();
             document.getElementById("result").innerText = "";
             document.getElementById("reading").innerHTML = "";
-            localStorage.removeItem("kanji_id");
+            document.getElementById('strok_order').innerHTML="";
+ 
 
             }
 
