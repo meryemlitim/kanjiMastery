@@ -41,7 +41,9 @@ class KanjiController extends Controller
             'meanings' => explode(',', $kanji->meaning),
             'on_readings' => explode(',', $kanji->reading_on),
             'kun_readings' => explode(',', $kanji->reading_kon),
-            'grade' => $kanji->grade ?? null
+            'grade' => $kanji->grade ?? null,
+            'stroke_order'=>$kanji->stroke_order,
+            'memory_trick'=>$kanji->memory_trick
         ]);
     }
 
