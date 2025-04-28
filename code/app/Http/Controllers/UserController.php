@@ -11,7 +11,9 @@ class UserController extends Controller
                    
         $user= Auth::user();
         $savedKanjis = $user->savedKanjis;
-        $flashcardCard=$savedKanjis->map(function($kanji){
+        // dd($savedKanjis);
+
+        $flashcard=$savedKanjis->map(function($kanji){
           return[
             
             'kanji' => $kanji->kanji_character,
@@ -23,8 +25,27 @@ class UserController extends Controller
 
           ];
 
-        });
+        });  
+        $quizs=[];
+
+        foreach($flashcard as $flash){
+          $otherMinings=$flashcard->where('kanji','!=',$flash['kanji'])->pluck('meanings')->flatten()->random(3)->toArray();
+          $correctOption=$flash['meanings'];
+          $options=$otherMinings;
+          $options[]=$correctOption[0];
+          shuffle($options);
+         
+          $quiz=[
+            'kanji'=>$flash['kanji'],
+            'correctAnswer'=>$flash['meanings'],
+            'options'=>$options
+          ];
+         
+          
+$quizs[]=$quiz;
+        }
+      // dd($quizs);
       
-        return view('user-dashboard', compact('user','savedKanjis','flashcardCard'));
+        return view('user-dashboard', compact('user','savedKanjis','flashcard','quizs'));
       }
 }

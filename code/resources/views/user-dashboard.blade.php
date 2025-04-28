@@ -12,7 +12,7 @@
     <meta name="keywords" content="keywords,here">
     <title>Kanji Recognizer</title>
     <script src="https://www.chenyuho.com/project/handwritingjs/handwriting.canvas.js"></script>
-    <script src="script.js" defer></script>
+    {{-- <script src="script.js" defer></script> --}}
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -340,44 +340,39 @@
     <h2 class="text-3xl font-extrabold text-pink-600 mb-10 text-center">📝 Guess the Kanji Meaning</h2>
 
 
-    <div class="bg-white p-8 rounded-2xl shadow-lg mb-12 mr-5 ml-5 border-4  border-pink-400">
+    <div id="quizContainer_meaning" class="bg-white p-8 rounded-2xl shadow-lg mb-12 mr-5 ml-5 border-4  border-pink-400">
+                {{-- <!-- Question -->
+                <div class="mb-8">
+                    <p class="text-xl font-bold text-gray-800 text-center">
+                      What is the meaning of the kanji <span class="text-pink-500 text-4xl">{{ $randomKanji['kanji'] }}</span>?
+                    </p>
+                  </div>
+                
+                  <!-- Answers -->
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                   @foreach ($options as $index=>$op )
+                   <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+                    {{ $index+1 }}-{{ $op }}
+                  </button>
+              
+                       
+                   @endforeach
+                  </div> --}}
+                
       
-        <!-- Question -->
-        <div class="mb-8">
-          <p class="text-xl font-bold text-gray-800 text-center">
-            What is the meaning of the kanji <span class="text-pink-500 text-4xl">花</span>?
-          </p>
-        </div>
-      
-        <!-- Answers -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
-            A) River
-          </button>
-      
-          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
-            B) Mountain
-          </button>
-      
-          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
-            C) Flower
-          </button>
-      
-          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
-            D) Tree
-          </button>
-        </div>
-      
-        <!-- Navigation Buttons -->
-        <div class="flex justify-between mt-10">
-          <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
-            Previous
-          </button>
-          <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
-            Next
-          </button>
-        </div>
+
       </div>
+      
+                  <!-- Navigation Buttons -->
+                  {{-- <div class="flex justify-between mt-10">
+                    <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
+                      Previous
+                    </button>
+                    <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
+                      Next
+                    </button>
+                  </div> --}}
       
   </div>
   <div id="quiz_reading" class=" hidden w-full md:py-6 md:mt-8 mb-16 text-gray-800 ">
@@ -582,9 +577,6 @@
             quiz_meaning.classList.add('hidden');
             quiz_reading.classList.add('hidden');
 
-
-
-
         });
         click_quiz_meaning.addEventListener("click", () => {
 
@@ -595,9 +587,6 @@
             flashcard.classList.add('hidden');
             quiz.classList.add('hidden');
             quiz_reading.classList.add('hidden');
-
-
-
 
         });
         click_quiz_reading.addEventListener("click", () => {
@@ -718,7 +707,7 @@
 
 // flashcard 
            
-    let cards = @json($flashcardCard);
+    let cards = @json($flashcard);
     console.log(cards);
 
     let currentCard=0;
@@ -732,7 +721,7 @@ function renderCard(){
    carousel.innerHTML=`
     <div class="relative w-[28rem] h-[20rem] bg-white rounded-3xl shadow-2xl border-4 border-pink-400 cursor-pointer transform transition hover:scale-105 group">
         <!-- Front of the card -->
-        <div class="absolute inset-0 flex items-center justify-center text-[6rem] font-extrabold text-pink-600 group-hover:hidden">
+        <div  class="absolute inset-0 flex items-center justify-center text-[6rem] font-extrabold text-pink-600 group-hover:hidden">
           ${cards[currentCard].kanji}
         </div> 
                                      
@@ -766,6 +755,95 @@ prev.addEventListener('click',function(e){
     renderCard();
 
 })
+
+// quiz_meaning
+
+
+let quizs=@json($quizs);
+console.log(quizs);
+let questionNumber = 0
+getQuiz();
+function getQuiz(){
+    document.getElementById('quizContainer_meaning').innerHTML=`
+        <!-- Question -->
+        <div class="mb-8">
+          <p class="text-xl font-bold text-gray-800 text-center">
+            What is the meaning of the kanji <span class="text-pink-500 text-4xl">
+                ${quizs[questionNumber].kanji}
+                </span>?
+          </p>
+        </div>
+      
+        <!-- Answers -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          ${quizs[questionNumber].options.map(op=>`
+           <button class=" answer bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            ${op}
+          </button>
+
+          `).join('')}
+        </div>
+      
+       
+`
+document.querySelectorAll('.answer').forEach(button => {
+    
+    button.addEventListener('click',()=>{
+        
+        console.log('clicked')
+        selectedOption=button.innerText.trim();
+        correctAnswer=quizs[questionNumber].correctAnswer;
+      
+       
+
+        // console.log(quizs.length)
+        if(selectedOption==correctAnswer){
+            // alert('good')
+            questionNumber++;
+                    console.log(questionNumber)
+
+            if(questionNumber==quizs.length){
+    review() 
+
+      
+    }
+            getQuiz();
+            console.log(questionNumber)
+            
+
+        }else{
+            alert('❌ Wrong! Try again.');
+        }
+
+     
+       
+   
+    
+})
+});
+
+}
+
+function review(){
+        document.getElementById('quizContainer_meaning').innerHTML=`
+         <button id="quiz_again" class=" bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            do quiz again
+          </button>
+         <button id="back_home" class=" bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            go home
+          </button>
+
+        `
+        document.getElementById('quiz_again').addEventListener('click',()=>{
+            questionNumber=0;
+            getQuiz();
+        })
+
+
+}
+
+
+
      
 
 
