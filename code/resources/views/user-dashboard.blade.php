@@ -365,58 +365,35 @@
       </div>
       
                   <!-- Navigation Buttons -->
-                  {{-- <div class="flex justify-between mt-10">
-                    <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
+                  <div class="flex justify-end mt-8 mr-6">
+                    {{-- <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
                       Previous
-                    </button>
-                    <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
+                    </button> --}}
+                    <button id="next_question" class=" hidden bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
                       Next
                     </button>
-                  </div> --}}
+                  </div>
       
   </div>
   <div id="quiz_reading" class=" hidden w-full md:py-6 md:mt-8 mb-16 text-gray-800 ">
     <h2 class="text-3xl font-extrabold text-pink-600 mb-10 text-center">📝 Guess the Kanji Reading</h2>
 
 
-    <div class="bg-white p-8 rounded-2xl shadow-lg mb-12 mr-5 ml-5 border-4  border-pink-400">
+    <div id="quizContainer_reading" class="bg-white p-8 rounded-2xl shadow-lg mb-12 mr-5 ml-5 border-4  border-pink-400">
       
-        <!-- Question -->
-        <div class="mb-8">
-          <p class="text-xl font-bold text-gray-800 text-center">
-            What is the reading of the kanji <span class="text-pink-500 text-4xl">花</span>?
-          </p>
-        </div>
+       
       
-        <!-- Answers -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
-            A)やま 
-          </button>
-      
-          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
-            B) かわ
-          </button>
-      
-          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
-            C) き
-          </button>
-      
-          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
-            D) はな
-          </button>
-        </div>
-      
-        <!-- Navigation Buttons -->
-        <div class="flex justify-between mt-10">
-          <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
+       
+      </div>
+         <!-- Navigation Buttons -->
+         <div class="flex justify-end mt-8 mr-6">
+          {{-- <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
             Previous
-          </button>
-          <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
+          </button> --}}
+          <button id="next" class=" hidden bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
             Next
           </button>
         </div>
-      </div>
       {{-- <div class="flex justify-center mt-10">
         <button id="quiz_menu" class="flex items-center gap-3 bg-white hover:bg-pink-100 text-pink-600 font-bold py-3 px-8 rounded-2xl shadow-md text-lg transition border-l-8 border-pink-400">
           <i class="fas fa-arrow-left text-pink-500 text-2xl"></i>
@@ -514,7 +491,6 @@
         user.classList.add('hidden');
 
         home_click.addEventListener("click", () => {
-            console.log("home");
 
             home.classList.remove('hidden');
             category.classList.add('hidden');
@@ -762,8 +738,11 @@ prev.addEventListener('click',function(e){
 let quizs=@json($quizs);
 console.log(quizs);
 let questionNumber = 0
+let struggledKanjiMeaning=[]
 getQuiz();
 function getQuiz(){
+
+  
     document.getElementById('quizContainer_meaning').innerHTML=`
         <!-- Question -->
         <div class="mb-8">
@@ -794,25 +773,32 @@ document.querySelectorAll('.answer').forEach(button => {
         selectedOption=button.innerText.trim();
         correctAnswer=quizs[questionNumber].correctAnswer;
       
-       
+        
 
         // console.log(quizs.length)
         if(selectedOption==correctAnswer){
-            // alert('good')
-            questionNumber++;
-                    console.log(questionNumber)
+          button.style.background='green';
 
-            if(questionNumber==quizs.length){
-    review() 
+        button.style.color='white';
+        document.getElementById('next_question').classList.remove('hidden');
 
       
-    }
-            getQuiz();
-            console.log(questionNumber)
+         
+            // alert('good job ')
+            // questionNumber++;
+                    console.log(questionNumber)
+
+           
+   
+            // getQuiz();
             
 
         }else{
-            alert('❌ Wrong! Try again.');
+          struggledKanjiMeaning[struggledKanjiMeaning.length]=quizs[questionNumber].kanji
+
+        button.style.background='red';
+        button.style.color='white';
+            // alert('❌ Wrong! Try again.');
         }
 
      
@@ -824,7 +810,20 @@ document.querySelectorAll('.answer').forEach(button => {
 
 }
 
+document.getElementById('next_question').addEventListener('click',()=>{
+  document.getElementById('next_question').classList.add('hidden');
+
+  questionNumber++; 
+  if(questionNumber==quizs.length){
+    review() 
+                   
+      
+    }
+  getQuiz();
+});
+
 function review(){
+  console.log(struggledKanjiMeaning);
         document.getElementById('quizContainer_meaning').innerHTML=`
          <button id="quiz_again" class=" bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
             do quiz again
@@ -835,13 +834,102 @@ function review(){
 
         `
         document.getElementById('quiz_again').addEventListener('click',()=>{
+        
             questionNumber=0;
-            getQuiz();
+            getQuiz();     
         })
+     
+
+}
+
+// --quiz reading
+
+
+let kanji_reading=@json($quizs_reading);
+console.log(kanji_reading)
+
+let 質問=0;
+// console.log(kanji_reading[question].kanji)
+getQuizReading();
+
+function getQuizReading(){
+
+  document.getElementById('quizContainer_reading').innerHTML=`
+   <!-- Question -->
+        <div class="mb-8">
+          <p class="text-xl font-bold text-gray-800 text-center">
+            What is the reading of the kanji <span class="text-pink-500 text-4xl">${kanji_reading[質問].kanji}</span>?
+          </p>
+        </div>
+      
+        <!-- Answers -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+         ${kanji_reading[質問].options.map(op=>`
+          <button  class="readingAnswer bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            ${op}
+          </button>
+         `).join('')}
+      
+    
+        </div>
+  `
+  document.querySelectorAll('.readingAnswer').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      selected=btn.innerText;
+
+      correct=kanji_reading[質問].correctAnswer;
+
+
+      if(selected==correct){
+        btn.style.background='green';
+        btn.style.color='white';
+        document.getElementById('next').classList.remove('hidden');
+
+
+      }else{
+        btn.style.background='red';
+        btn.style.color='white';
+
+      }
+    })
+
+  });
+
+
 
 
 }
 
+document.getElementById('next').addEventListener('click',()=>{
+  document.getElementById('next').classList.add('hidden');
+  質問++;
+  if(質問==kanji_reading.length){
+    review_reading();
+  } 
+  getQuizReading();
+
+
+  
+})
+
+function review_reading(){
+  document.getElementById('quizContainer_reading').innerHTML=`
+  <button id="quizReading_again" class=" bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            do quiz again
+          </button>
+         <button id="back_home" class=" bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            go home
+          </button>
+  `
+
+  document.getElementById('quizReading_again').addEventListener('click',()=>{
+        
+    質問=0;
+    getQuizReading();
+         
+    })
+
+}
 
 
      
