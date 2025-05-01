@@ -159,7 +159,7 @@
                       <span class="text-gray-600">Streak: <span class="font-bold text-pink-600">12 days</span></span>
                     </div>
                     <div class="w-full bg-pink-200 h-4 rounded-full overflow-hidden shadow-inner">
-                      <div class="bg-pink-500 h-full w-[65%]"></div>
+                      <div class="bg-pink-500 h-full w-[{{ $progress }}%]"></div>
                     </div>
                     <p class="mt-2 text-sm text-right text-gray-500">XP: 650 / 1000</p>
                   </div>

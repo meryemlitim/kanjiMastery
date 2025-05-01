@@ -46,8 +46,4 @@ class KanjiController extends Controller
             'memory_trick'=>$kanji->memory_trick
         ]);
     }
-
-    
-   
-
 }

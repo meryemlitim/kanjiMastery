@@ -26,14 +26,8 @@ class KanjiListController extends Controller
         $id_string=$request->kanji_id;
         $id_array=explode(',',$id_string);
         
-        foreach($id_array as $id){
-            $kanji=KanjiList::where('kanji_id','=',$id)->first();
-          if($kanji){
-            $kanji->isStruggled_meaning=true;
-            $kanji->save();
- 
-          }
-        }
+      KanjiList::whereIn('kanji_id',$id_array)->where('user_id',Auth::user()->id)->update(['isStruggled_meaning'=>true]);
+      KanjiList::whereNotIn('kanji_id',$id_array)->where('user_id',Auth::user()->id)->update(['isStruggled_meaning'=>false]);
         
 
   
