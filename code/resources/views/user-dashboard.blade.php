@@ -195,9 +195,11 @@
                   </div>
                   <div class="flex gap-4 flex-wrap">
                     <!-- Struggled Kanji Cards -->
-                    <div class="bg-pink-100 border-2 border-pink-400 text-pink-700 font-bold text-2xl px-4 py-3 rounded-lg shadow">悩</div>
-                    <div class="bg-pink-100 border-2 border-pink-400 text-pink-700 font-bold text-2xl px-4 py-3 rounded-lg shadow">難</div>
-                    <div class="bg-pink-100 border-2 border-pink-400 text-pink-700 font-bold text-2xl px-4 py-3 rounded-lg shadow">忘</div>
+                    @foreach ($getStruggledKanjiMeaning as $kanji)
+                    <div class="bg-pink-100 border-2 border-pink-400 text-pink-700 font-bold text-2xl px-4 py-3 rounded-lg shadow">{{ $kanji->kanji_character }}</div>
+
+                    @endforeach
+                    
                     <!-- Add more as needed -->
                   </div>
                 </div>
@@ -741,7 +743,10 @@ let questionNumber = 0
 let struggledKanjiMeaning=[]
 getQuiz();
 function getQuiz(){
-
+  if (!quizs[questionNumber]) {
+    console.warn('No more questions left.');
+    return;
+  }
   
     document.getElementById('quizContainer_meaning').innerHTML=`
         <!-- Question -->
@@ -762,14 +767,26 @@ function getQuiz(){
 
           `).join('')}
         </div>
-      
+         
+      <div class="flex justify-end mt-8 mr-6">
+        
+                   
+                    <button type="submit" id="next_question" class=" hidden bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
+                      Next
+                    </button>
+                   
+                  </div>
+                </form>
+                 
        
 `
+
+
 document.querySelectorAll('.answer').forEach(button => {
     
     button.addEventListener('click',()=>{
-        
-        console.log('clicked')
+      button.disabled = true;
+
         selectedOption=button.innerText.trim();
         correctAnswer=quizs[questionNumber].correctAnswer;
       
@@ -777,6 +794,7 @@ document.querySelectorAll('.answer').forEach(button => {
 
         // console.log(quizs.length)
         if(selectedOption==correctAnswer){
+          
           button.style.background='green';
 
         button.style.color='white';
@@ -794,7 +812,9 @@ document.querySelectorAll('.answer').forEach(button => {
             
 
         }else{
-          struggledKanjiMeaning[struggledKanjiMeaning.length]=quizs[questionNumber].kanji
+          struggledKanjiMeaning[struggledKanjiMeaning.length]=quizs[questionNumber].id
+          quizs[questionNumber].isStruggled='true';
+          console.log( quizs[questionNumber].isStruggled)
 
         button.style.background='red';
         button.style.color='white';
@@ -807,14 +827,13 @@ document.querySelectorAll('.answer').forEach(button => {
     
 })
 });
-
-}
-
 document.getElementById('next_question').addEventListener('click',()=>{
+  console.log('next btn')
   document.getElementById('next_question').classList.add('hidden');
 
   questionNumber++; 
   if(questionNumber==quizs.length){
+
     review() 
                    
       
@@ -822,15 +841,24 @@ document.getElementById('next_question').addEventListener('click',()=>{
   getQuiz();
 });
 
+}
+
+
+
 function review(){
   console.log(struggledKanjiMeaning);
         document.getElementById('quizContainer_meaning').innerHTML=`
          <button id="quiz_again" class=" bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
             do quiz again
           </button>
+      <form id="" action="{{ route('Struggled_kanji') }}" method="POST">
+@csrf
          <button id="back_home" class=" bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
             go home
           </button>
+           <input type="text" id="kanji_id" name="kanji_id" value="${struggledKanjiMeaning}">
+     
+               </form>           
 
         `
         document.getElementById('quiz_again').addEventListener('click',()=>{
@@ -895,14 +923,11 @@ function getQuizReading(){
 
   });
 
-
-
-
 }
 
 document.getElementById('next').addEventListener('click',()=>{
   document.getElementById('next').classList.add('hidden');
-  質問++;
+  質問++; 
   if(質問==kanji_reading.length){
     review_reading();
   } 

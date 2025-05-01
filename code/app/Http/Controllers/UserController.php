@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KanjiList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,6 +17,7 @@ class UserController extends Controller
         $flashcard=$savedKanjis->map(function($kanji){
           return[
             
+            'id' => $kanji->id,
             'kanji' => $kanji->kanji_character,
             'jlpt' => $kanji->jlpt_level,
             'meanings' => explode(',', $kanji->meaning),
@@ -38,9 +40,11 @@ class UserController extends Controller
           shuffle($options);
          
           $quiz=[
+            'id'=>$flash['id'],
             'kanji'=>$flash['kanji'],
             'correctAnswer'=>$flash['meanings'],
-            'options'=>$options
+            'options'=>$options,
+            // 'isStruggled'=>'false'
           ];                        
          
           
@@ -56,6 +60,7 @@ $quizs[]=$quiz;
           shuffle($reading_options);
 
           $quiz_reading=[
+            'id'=>$flash['id'],
             'kanji'=>$flash['kanji'],
             'correctAnswer'=>$flash['kun_readings'],
             'options'=>$reading_options
@@ -65,9 +70,10 @@ $quizs[]=$quiz;
           $quizs_reading[]=$quiz_reading;
 
         }
-          // dd($quizs_reading);
-
+        // get Struggled Kanji Meaning
+        $getStruggledKanjiMeaning= $user->savedKanjis()->wherePivot('isStruggled_meaning','=',true)->get();
+            // dd($getStruggledKanjiMeaning);    
                       
-        return view('user-dashboard', compact('user','savedKanjis','flashcard','quizs','quizs_reading'));
+        return view('user-dashboard', compact('user','savedKanjis','flashcard','quizs','quizs_reading','getStruggledKanjiMeaning'));
       }
 }

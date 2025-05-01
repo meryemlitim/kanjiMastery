@@ -22,4 +22,26 @@ class KanjiListController extends Controller
        
         return redirect()->route('user_dashboard');
     }
+    public function struggledKanjiMeaning(Request $request){
+        $id_string=$request->kanji_id;
+        $id_array=explode(',',$id_string);
+        
+        foreach($id_array as $id){
+            $kanji=KanjiList::where('kanji_id','=',$id)->first();
+          if($kanji){
+            $kanji->isStruggled_meaning=true;
+            $kanji->save();
+ 
+          }
+        }
+        
+
+  
+        return redirect()->route('user_dashboard');
+
+
+    }
+
+   
 }
+
