@@ -74,7 +74,28 @@ $quizs[]=$quiz;
         $getStruggledKanjiMeaning= $user->savedKanjis()->wherePivot('isStruggled_meaning','=',true)->get();
         $getStruggledKanjiReading= $user->savedKanjis()->wherePivot('isStruggled_reading','=',true)->get();
             // dd($getStruggledKanjiMeaning);    
-                $progress=40;      
-        return view('user-dashboard', compact('user','savedKanjis','flashcard','quizs','quizs_reading','getStruggledKanjiMeaning','progress','getStruggledKanjiReading'));
+            // $countMasterdKanji=count($savedKanjis)-count($getStruggledKanjiMeaning!);
+            $countMasterdKanjiMeaning=count($savedKanjis)-count($getStruggledKanjiMeaning);
+            $countMasterdKanjiReading=count($savedKanjis)-count($getStruggledKanjiReading);
+            $progress=($countMasterdKanjiMeaning+$countMasterdKanjiReading)*100/count($savedKanjis);    
+            
+            $totalSavedKanji=count($savedKanjis);
+            if($progress>=100){
+              $msg='Bravo! All kanji mastered! 🎉';
+            }
+            if($progress>=67 && $progress<=99){
+              $msg='Almost done! Stay focused.';
+            }
+            if($progress>=34 && $progress<=66){
+              $msg="You're making great progress!";
+            }
+            if($progress<=33){
+              $msg='Good start! Keep learning.';
+            }
+            if($progress==0){
+              $msg="Let's begin your kanji journey!";
+            }
+
+        return view('user-dashboard', compact('user','savedKanjis','flashcard','quizs','quizs_reading','getStruggledKanjiMeaning','progress','getStruggledKanjiReading','msg','totalSavedKanji','countMasterdKanjiMeaning','countMasterdKanjiReading'));
       }
 }

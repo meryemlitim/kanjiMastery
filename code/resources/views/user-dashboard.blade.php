@@ -113,7 +113,7 @@
                 <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
                     <li id="home_click" class="mr-6 my-2 md:my-0">
                         <a href="#"
-                            class="block py-1 md:py-3 pl-1 align-middle text-pink-600 no-underline hover:text-pink-900 border-b-2 border-pink-600 hover:border-pink-600">
+                            class="block py-1 md:py-3 pl-1 align-middle text-pink-600 no-underline hover:text-pink-900  border-b-2 border-white hover:border-pink-500">
                             <i class="fas fa-home fa-fw mr-3 text-pink-800"></i><span
                                 class="pb-1 md:pb-0 text-sm">Home</span>
                         </a>
@@ -150,45 +150,45 @@
 
             <!-- Welcome Header -->
             <div class="text-center mb-12">
-                <h1 class="text-4xl font-extrabold text-pink-600 mb-2 mt-8">Welcome back, Kanji Warrior! 🥋</h1>
+                <h1 class="text-4xl font-extrabold text-pink-600 mb-2 mt-8">Welcome back, Kanji Master! 🥋</h1>
                 <p class="text-lg text-gray-600">Keep going — you're mastering kanji step by step!</p>
-                <div
+                {{-- <div
                     class="mt-4 inline-block bg-yellow-300 text-yellow-900 font-semibold px-4 py-1 rounded-full shadow">
-                    Level 5</div>
+                    Level 5</div> --}}
             </div>
 
             <!-- Progress & XP Section -->
             <div class="mb-10">
                 <div class="bg-white p-6 rounded-2xl shadow-lg">
                     <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-2xl font-bold text-pink-500">🔥 Your Streak & XP</h2>
-                        <span class="text-gray-600">Streak: <span class="font-bold text-pink-600">12 days</span></span>
+                        <h2 class="text-2xl font-bold text-pink-500">🔥 Your Kanji Progress</h2>
+                        <span class="text-gray-600">{{ $msg }}</span>
                     </div>
                     <div class="w-full bg-pink-200 h-4 rounded-full overflow-hidden shadow-inner">
                         <div class="bg-pink-500 h-full w-[{{ $progress }}%]"></div>
                     </div>
-                    <p class="mt-2 text-sm text-right text-gray-500">XP: 650 / 1000</p>
+                    <p class="mt-2 text-sm text-right text-gray-500">{{ $progress }} / 100</p>
                 </div>
             </div>
 
             <!-- Stats Section -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                 <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-pink-400">
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2">📘 Total Kanji Learned</h3>
-                    <p class="text-3xl font-bold text-pink-600">120</p>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">📘 Total Kanji In My List </h3>
+                    <p class="text-3xl font-bold text-pink-600">{{ $totalSavedKanji }}</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-400">
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2">🎯 Kanji Mastered</h3>
-                    <p class="text-3xl font-bold text-green-600">85</p>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">🎯 Kanji with Meaning Mastered</h3>
+                    <p class="text-3xl font-bold text-green-600">{{ $countMasterdKanjiMeaning }}</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-yellow-400">
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2">🔥 Streak</h3>
-                    <p class="text-3xl font-bold text-yellow-600">12 days</p>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">🎯 Kanji with Reading Mastered</h3>
+                    <p class="text-3xl font-bold text-yellow-600">{{ $countMasterdKanjiReading }}</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-400">
+                {{-- <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-400">
                     <h3 class="text-xl font-semibold text-gray-700 mb-2">⚡ Current XP</h3>
                     <p class="text-3xl font-bold text-blue-600">650</p>
-                </div>
+                </div> --}}
             </div>
 
             <!-- Struggled Kanji Section -->
@@ -198,7 +198,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                     <div class="bg-white p-6 rounded-2xl shadow-lg border border-pink-200">
-                        <h2 class="text-2xl font-bold text-pink-500"> Their Meanings</h2>
+                        <h2 class="text-2xl font-bold text-pink-500"> Their Meanings :</h2>
                         <div class="flex items-center justify-between mb-4">
                             {{-- <button class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full transition shadow">
                       Review Again
@@ -217,7 +217,7 @@
                     </div>
                     <div class="bg-white p-6 rounded-2xl shadow-lg border border-pink-200">
                         <div class="flex items-center justify-between mb-4">
-                            <h2 class="text-2xl font-bold text-pink-500">Their Readings</h2>
+                            <h2 class="text-2xl font-bold text-pink-500">Their Readings :</h2>
                             {{-- <button class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full transition shadow">
                       Review Again
                     </button> --}}
@@ -532,10 +532,13 @@
             quiz.classList.add('hidden');
             quiz_meaning.classList.add('hidden');
             quiz_reading.classList.add('hidden');
+
+            user_click.style.borderBottom = ""
+           category_click.style=""
+            home_click.style="2px solid #D5006D";
         });
 
         category_click.addEventListener("click", () => {
-
             home.classList.add('hidden');
             category.classList.remove('hidden');
             user.classList.add('hidden');
@@ -544,6 +547,9 @@
             quiz_meaning.classList.add('hidden');
             quiz_reading.classList.add('hidden');
 
+            category_click.style.borderBottom = "2px solid #D5006D"
+            user_click.style.removeProperty("border-bottom");
+            home_click.style.removeProperty("border-bottom");
 
 
 
@@ -558,7 +564,9 @@
             quiz_meaning.classList.add('hidden');
             quiz_reading.classList.add('hidden');
 
-
+            user_click.style.borderBottom = "2px solid #D5006D"
+           category_click.style=""
+            home_click.style="";
 
 
         });
