@@ -10,6 +10,8 @@ class KanjiList extends Model
     protected $fillable=[
         'user_id',
         'kanji_id',
+        'isStruggled_meaning',
+        'isStruggled_reading',
 
     ];
 }

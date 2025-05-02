@@ -12,7 +12,7 @@
     <meta name="keywords" content="keywords,here">
     <title>Kanji Recognizer</title>
     <script src="https://www.chenyuho.com/project/handwritingjs/handwriting.canvas.js"></script>
-    <script src="script.js" defer></script>
+    {{-- <script src="script.js" defer></script> --}}
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -53,7 +53,8 @@
 
                     <div class="relative text-sm">
                         <button id="userButton" class="flex items-center focus:outline-none mr-3">
-                            <img class="w-10 h-10 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of User">
+                            <img class="w-10 h-10 rounded-full mr-4" src="http://i.pravatar.cc/300"
+                                alt="Avatar of User">
                             <span class="hidden md:inline-block">Hi, {{ $user->name }} </span>
                             <svg class="pl-2 h-2" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -85,7 +86,9 @@
 
                                 </div>
 
-                                <li><a href="{{ route('logout') }}" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Logout</a></li>
+                                <li><a href="{{ route('logout') }}"
+                                        class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Logout</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -123,7 +126,7 @@
                         </a>
                     </li>
                     <li id="category_click" class="mr-6 my-2 md:my-0">
-                        <a href="#" 
+                        <a href="#"
                             class="block py-1 md:py-3 pl-1 align-middle text-pink-600 no-underline hover:text-pink-900 border-b-2 border-white hover:border-pink-500">
                             <i class="fa fa-list fa-fw mr-3"></i>
                             <span class="pb-1 md:pb-0 text-sm">my list</span>
@@ -142,295 +145,297 @@
     <!--Container-->
     <div class="w-full mx-auto pt-20">
 
-        <div id="home" class="w-full px-6 py-10 bg-gradient-to-br from-pink-50 to-pink-100 min-h-screen text-gray-800">
+        <div id="home"
+            class="w-full px-6 py-10 bg-gradient-to-br from-pink-50 to-pink-100 min-h-screen text-gray-800">
 
-                <!-- Welcome Header -->
-                <div class="text-center mb-12">
-                  <h1 class="text-4xl font-extrabold text-pink-600 mb-2 mt-8">Welcome back, Kanji Warrior! 🥋</h1>
-                  <p class="text-lg text-gray-600">Keep going — you're mastering kanji step by step!</p>
-                  <div class="mt-4 inline-block bg-yellow-300 text-yellow-900 font-semibold px-4 py-1 rounded-full shadow">Level 5</div>
-                </div>
-              
-                <!-- Progress & XP Section -->
-                <div class="mb-10">
-                  <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <!-- Welcome Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-extrabold text-pink-600 mb-2 mt-8">Welcome back, Kanji Warrior! 🥋</h1>
+                <p class="text-lg text-gray-600">Keep going — you're mastering kanji step by step!</p>
+                <div
+                    class="mt-4 inline-block bg-yellow-300 text-yellow-900 font-semibold px-4 py-1 rounded-full shadow">
+                    Level 5</div>
+            </div>
+
+            <!-- Progress & XP Section -->
+            <div class="mb-10">
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
                     <div class="flex justify-between items-center mb-4">
-                      <h2 class="text-2xl font-bold text-pink-500">🔥 Your Streak & XP</h2>
-                      <span class="text-gray-600">Streak: <span class="font-bold text-pink-600">12 days</span></span>
+                        <h2 class="text-2xl font-bold text-pink-500">🔥 Your Streak & XP</h2>
+                        <span class="text-gray-600">Streak: <span class="font-bold text-pink-600">12 days</span></span>
                     </div>
                     <div class="w-full bg-pink-200 h-4 rounded-full overflow-hidden shadow-inner">
-                      <div class="bg-pink-500 h-full w-[65%]"></div>
+                        <div class="bg-pink-500 h-full w-[{{ $progress }}%]"></div>
                     </div>
                     <p class="mt-2 text-sm text-right text-gray-500">XP: 650 / 1000</p>
-                  </div>
                 </div>
-              
-                <!-- Stats Section -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                  <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-pink-400">
+            </div>
+
+            <!-- Stats Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-pink-400">
                     <h3 class="text-xl font-semibold text-gray-700 mb-2">📘 Total Kanji Learned</h3>
                     <p class="text-3xl font-bold text-pink-600">120</p>
-                  </div>
-                  <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-400">
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-400">
                     <h3 class="text-xl font-semibold text-gray-700 mb-2">🎯 Kanji Mastered</h3>
                     <p class="text-3xl font-bold text-green-600">85</p>
-                  </div>
-                  <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-yellow-400">
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-yellow-400">
                     <h3 class="text-xl font-semibold text-gray-700 mb-2">🔥 Streak</h3>
                     <p class="text-3xl font-bold text-yellow-600">12 days</p>
-                  </div>
-                  <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-400">
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-400">
                     <h3 class="text-xl font-semibold text-gray-700 mb-2">⚡ Current XP</h3>
                     <p class="text-3xl font-bold text-blue-600">650</p>
-                  </div>
                 </div>
-              
-                <!-- Struggled Kanji Section -->
-                <div class="bg-white p-6 rounded-2xl shadow-lg border border-pink-200">
-                  <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-2xl font-bold text-pink-500">🧐 Struggled With</h2>
-                    <button class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full transition shadow">
+            </div>
+
+            <!-- Struggled Kanji Section -->
+            <div class="flex flex-col gap-6">
+
+                <h2 class="text-2xl font-bold text-pink-500">🧐 Kanji You Struggled With ..</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-pink-200">
+                        <h2 class="text-2xl font-bold text-pink-500"> Their Meanings</h2>
+                        <div class="flex items-center justify-between mb-4">
+                            {{-- <button class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full transition shadow">
                       Review Again
-                    </button>
-                  </div>
-                  <div class="flex gap-4 flex-wrap">
-                    <!-- Struggled Kanji Cards -->
-                    <div class="bg-pink-100 border-2 border-pink-400 text-pink-700 font-bold text-2xl px-4 py-3 rounded-lg shadow">悩</div>
-                    <div class="bg-pink-100 border-2 border-pink-400 text-pink-700 font-bold text-2xl px-4 py-3 rounded-lg shadow">難</div>
-                    <div class="bg-pink-100 border-2 border-pink-400 text-pink-700 font-bold text-2xl px-4 py-3 rounded-lg shadow">忘</div>
-                    <!-- Add more as needed -->
-                  </div>
+                    </button> --}}
+                        </div>
+                        <div class="flex gap-4 flex-wrap">
+                            <!-- Struggled Kanji Cards -->
+                            @foreach ($getStruggledKanjiMeaning as $kanji)
+                                <div
+                                    class="bg-pink-100 border-2 border-pink-400 text-pink-700 font-bold text-2xl px-4 py-3 rounded-lg shadow">
+                                    {{ $kanji->kanji_character }}</div>
+                            @endforeach
+
+                            <!-- Add more as needed -->
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-pink-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-2xl font-bold text-pink-500">Their Readings</h2>
+                            {{-- <button class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full transition shadow">
+                      Review Again
+                    </button> --}}
+                        </div>
+                        <div class="flex gap-4 flex-wrap">
+                            <!-- Struggled Kanji Cards -->
+                            @foreach ($getStruggledKanjiReading as $kanji)
+                                <div
+                                    class="bg-pink-100 border-2 border-pink-400 text-pink-700 font-bold text-2xl px-4 py-3 rounded-lg shadow">
+                                    {{ $kanji->kanji_character }}</div>
+                            @endforeach
+
+                            <!-- Add more as needed -->
+                        </div>
+                    </div>
                 </div>
-              
+            </div>
+
         </div>
 
-        <div id="user"
-    class="hidden w-full px-6 mb-16 md:py-6 md:mt-8 text-gray-800 leading-relaxed relative">
+        <div id="user" class="hidden w-full px-6 mb-16 md:py-6 md:mt-8 text-gray-800 leading-relaxed relative">
 
-    <div class="flex flex-col lg:flex-row gap-12 items-start justify-center">
+            <div class="flex flex-col lg:flex-row gap-12 items-start justify-center">
 
-        <!-- Canvas Section -->
-        <div class="flex flex-col items-center gap-6 bg-white p-6 rounded-3xl shadow-xl border border-pink-200">
-            <canvas id="canvas" width="450" height="450"
-                class="rounded-2xl border-4 border-pink-400 shadow-inner cursor-crosshair bg-white"></canvas>
+                <!-- Canvas Section -->
+                <div
+                    class="flex flex-col items-center gap-6 bg-white p-6 rounded-3xl shadow-xl border border-pink-200">
+                    <canvas id="canvas" width="450" height="450"
+                        class="rounded-2xl border-4 border-pink-400 shadow-inner cursor-crosshair bg-white"></canvas>
 
-            <div class="flex gap-4">
-                <button onclick="recognizeKanji()"
-                    class="bg-gradient-to-r from-blue-400 to-blue-600 text-white px-5 py-2 rounded-full shadow hover:from-blue-500 hover:to-blue-700 transition duration-300">
-                    🔍 Recognize
-                </button>
-                <button onclick="eraseAll()"
-                    class="bg-gradient-to-r from-red-400 to-red-600 text-white px-5 py-2 rounded-full shadow hover:from-red-500 hover:to-red-700 transition duration-300">
-                    ❌ Erase
-                </button>
+                    <div class="flex gap-4">
+                        <button onclick="recognizeKanji()"
+                            class="bg-gradient-to-r from-blue-400 to-blue-600 text-white px-5 py-2 rounded-full shadow hover:from-blue-500 hover:to-blue-700 transition duration-300">
+                            🔍 Recognize
+                        </button>
+                        <button onclick="eraseAll()"
+                            class="bg-gradient-to-r from-red-400 to-red-600 text-white px-5 py-2 rounded-full shadow hover:from-red-500 hover:to-red-700 transition duration-300">
+                            ❌ Erase
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Info Section -->
+                <div class="flex flex-col gap-6 w-full max-w-md">
+                    <div
+                        class="flex justify-between items-center bg-white p-4 rounded-2xl shadow border border-pink-300">
+                        <div id="result"
+                            class="text-xl font-semibold text-pink-600 border-2 border-pink-500 px-4 py-1 rounded-md bg-pink-100">
+                        </div>
+                        <form action="{{ route('add_kanjiList') }}" method="POST">
+                            @csrf
+                            <button type="submit"
+                                class="flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full transition duration-300 shadow">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                Save
+                            </button>
+                            <input type="hidden" id="kanji_id" name="kanji_id">
+                        </form>
+
+                    </div>
+
+
+
+                    <div
+                        class="bg-gradient-to-br from-pink-100 to-pink-200 border-2 border-pink-400 p-6 rounded-3xl shadow">
+                        <h2 class="text-2xl font-bold text-pink-700 mb-4">🌸 Kanji Info:</h2>
+                        <div id="reading" class="text-lg text-gray-800 leading-relaxed text-left space-y-2">
+                        </div>
+
+                    </div>
+                    <div id="strok_order" class="flex gap-6">
+
+                    </div>
+                </div>
+
             </div>
         </div>
-
-        <!-- Info Section -->
-        <div class="flex flex-col gap-6 w-full max-w-md">
-            <div class="flex justify-between items-center bg-white p-4 rounded-2xl shadow border border-pink-300">
-                <div id="result"
-                    class="text-xl font-semibold text-pink-600 border-2 border-pink-500 px-4 py-1 rounded-md bg-pink-100">
-                </div>
-               <form action="{{ route('add_kanjiList') }}" method="POST">
-                @csrf
-                <button type="submit" 
-                class="flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full transition duration-300 shadow">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M5 13l4 4L19 7" />
-                </svg> 
-                Save
-            </button>
-            <input type="hidden" id="kanji_id" name="kanji_id">
-               </form>
-
-            </div>
-           
-
-
-            <div class="bg-gradient-to-br from-pink-100 to-pink-200 border-2 border-pink-400 p-6 rounded-3xl shadow">
-                <h2 class="text-2xl font-bold text-pink-700 mb-4">🌸 Kanji Info:</h2>
-                <div id="reading" class="text-lg text-gray-800 leading-relaxed text-left space-y-2">
-                </div>
-               
-            </div>
-            <div id="strok_order" class="flex gap-">
-
-            </div>
-        </div>
-        
-    </div>
-</div>
 
 
 
         <div id="category" class=" hidden w-full md:py-6 md:mt-8 mb-16 text-gray-800">
-          <div class="flex justify-end  space-x-4 mb-8 mr-8">
-            <button id="flashcard_click" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition flex items-center space-x-2">
-              <i class="fas fa-clone"></i>
-              <span>Flash Cards</span>
-            </button>
-            <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition flex items-center space-x-2">
-              <i class="fas fa-brain"></i>
-              <span>Memory Game</span>
-            </button>
-            <button id="quiz_click" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition flex items-center space-x-2">
-              <i class="fas fa-question-circle"></i>
-              <span>Quiz</span>
-            </button>
-          </div>
-           
-            <div class="grid grid-cols-4 gap-4  mx-20">
-
-              
-              @foreach ($savedKanjis as $kanji)
-              <div class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
-                <div class="text-sm">{{ $kanji->reading_on }}.{{ $kanji->reading_kon }}</div>
-                {{-- <div class="text-sm">イチ・ひと-</div> --}}
-                <div class="text-4xl font-bold my-2">{{ $kanji->kanji_character }}</div>
-                <div class="uppercase text-xs tracking-widest">{{ $kanji->meaning }}</div>
-              </div>
-                  
-              @endforeach
-            
+            <div class="flex justify-end  space-x-4 mb-8 mr-8">
+                <button id="flashcard_click"
+                    class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition flex items-center space-x-2">
+                    <i class="fas fa-clone"></i>
+                    <span>Flash Cards</span>
+                </button>
+                <button
+                    class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition flex items-center space-x-2">
+                    <i class="fas fa-brain"></i>
+                    <span>Memory Game</span>
+                </button>
+                <button id="quiz_click"
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition flex items-center space-x-2">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Quiz</span>
+                </button>
             </div>
 
-  </div>
-  <div id="flashcard" class=" hidden w-full md:py-6 md:mt-8 mb-16 text-gray-800 ">
-<!-- Flashcard Section -->
-    <h2 class="text-4xl font-extrabold text-center text-pink-600 mb-10 drop-shadow">🃏 Master Your Kanji</h2>
-  
-    <div class="carousel flex justify-center">
-        <h1 class="text-pink-500">no cards added </h1>
-    </div>
-  
-    <div class="flex justify-center mt-10 space-x-6">
-      <button class="prev bg-pink-500 hover:bg-pink-600 text-white font-bold px-6 py-3 rounded-full shadow-lg transition-all">
-        ⬅ Previous
-      </button>
-      <button class="next bg-pink-500 hover:bg-pink-600 text-white font-bold px-6 py-3 rounded-full shadow-lg transition-all">
-        Next ➡
-      </button>
-    </div>
-  
-  
-  </div>
-  <div id="quiz_menu" class="hidden w-full py-8 mt-12 mb-16 text-gray-800">
-    <h2 class="text-3xl font-extrabold text-pink-600 mb-10 text-center">📝 Test Your Kanji Skills</h2>
-  
-    <div class="flex flex-col items-center gap-6">
-      <!-- Guess Meaning Quiz -->
-      <button id="click_quiz_meaning" class="flex items-center gap-4 bg-white hover:bg-pink-100 text-pink-600 font-semibold py-4 px-8 rounded-2xl shadow-md text-lg transition w-full max-w-md border-l-8 border-pink-400">
-        <i class="fas fa-question-circle text-pink-500 text-2xl"></i>
-        <span>Guess the Kanji Meaning</span>
-      </button>
-  
-      <!-- Guess Reading Quiz -->
-      <button id="click_quiz_reading" class="flex items-center gap-4 bg-white hover:bg-pink-100 text-pink-600 font-semibold py-4 px-8 rounded-2xl shadow-md text-lg transition w-full max-w-md border-l-8 border-pink-400">
-        <i class="fas fa-book-open text-pink-500 text-2xl"></i>
-        <span>Guess the Kanji Reading</span>
-      </button>
-    </div>
-  </div>
-  
-  
-  <div id="quiz_meaning" class=" hidden w-full md:py-6 md:mt-8 mb-16 text-gray-800 ">
-    <h2 class="text-3xl font-extrabold text-pink-600 mb-10 text-center">📝 Guess the Kanji Meaning</h2>
+            <div class="grid grid-cols-4 gap-4  mx-20">
 
 
-    <div class="bg-white p-8 rounded-2xl shadow-lg mb-12 mr-5 ml-5 border-4  border-pink-400">
-      
-        <!-- Question -->
-        <div class="mb-8">
-          <p class="text-xl font-bold text-gray-800 text-center">
-            What is the meaning of the kanji <span class="text-pink-500 text-4xl">花</span>?
-          </p>
+                @foreach ($savedKanjis as $kanji)
+                    <div
+                        class="bg-pink-600 hover:bg-pink-700 transition text-white text-center rounded-xl border-4 border-green-400 p-4 shadow-lg cursor-pointer">
+                        <div class="text-sm">{{ $kanji->reading_on }}.{{ $kanji->reading_kon }}</div>
+                        {{-- <div class="text-sm">イチ・ひと-</div> --}}
+                        <div class="text-4xl font-bold my-2">{{ $kanji->kanji_character }}</div>
+                        <div class="uppercase text-xs tracking-widest">{{ $kanji->meaning }}</div>
+                    </div>
+                @endforeach
+
+            </div>
+
         </div>
-      
-        <!-- Answers -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
-            A) River
-          </button>
-      
-          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
-            B) Mountain
-          </button>
-      
-          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
-            C) Flower
-          </button>
-      
-          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
-            D) Tree
-          </button>
-        </div>
-      
-        <!-- Navigation Buttons -->
-        <div class="flex justify-between mt-10">
-          <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
-            Previous
-          </button>
-          <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
-            Next
-          </button>
-        </div>
-      </div>
-      
-  </div>
-  <div id="quiz_reading" class=" hidden w-full md:py-6 md:mt-8 mb-16 text-gray-800 ">
-    <h2 class="text-3xl font-extrabold text-pink-600 mb-10 text-center">📝 Guess the Kanji Reading</h2>
+        <div id="flashcard" class=" hidden w-full md:py-6 md:mt-8 mb-16 text-gray-800 ">
+            <!-- Flashcard Section -->
+            <h2 class="text-4xl font-extrabold text-center text-pink-600 mb-10 drop-shadow">🃏 Master Your Kanji</h2>
+
+            <div class="carousel flex justify-center">
+                <h1 class="text-pink-500">no cards added </h1>
+            </div>
+
+            <div class="flex justify-center mt-10 space-x-6">
+                <button
+                    class="prev bg-pink-500 hover:bg-pink-600 text-white font-bold px-6 py-3 rounded-full shadow-lg transition-all">
+                    ⬅ Previous
+                </button>
+                <button
+                    class="next bg-pink-500 hover:bg-pink-600 text-white font-bold px-6 py-3 rounded-full shadow-lg transition-all">
+                    Next ➡
+                </button>
+            </div>
 
 
-    <div class="bg-white p-8 rounded-2xl shadow-lg mb-12 mr-5 ml-5 border-4  border-pink-400">
-      
-        <!-- Question -->
-        <div class="mb-8">
-          <p class="text-xl font-bold text-gray-800 text-center">
-            What is the reading of the kanji <span class="text-pink-500 text-4xl">花</span>?
-          </p>
         </div>
-      
-        <!-- Answers -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
-            A)やま 
-          </button>
-      
-          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
-            B) かわ
-          </button>
-      
-          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
-            C) き
-          </button>
-      
-          <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
-            D) はな
-          </button>
+        <div id="quiz_menu" class="hidden w-full py-8 mt-12 mb-16 text-gray-800">
+            <h2 class="text-3xl font-extrabold text-pink-600 mb-10 text-center">📝 Test Your Kanji Skills</h2>
+
+            <div class="flex flex-col items-center gap-6">
+                <!-- Guess Meaning Quiz -->
+                <button id="click_quiz_meaning"
+                    class="flex items-center gap-4 bg-white hover:bg-pink-100 text-pink-600 font-semibold py-4 px-8 rounded-2xl shadow-md text-lg transition w-full max-w-md border-l-8 border-pink-400">
+                    <i class="fas fa-question-circle text-pink-500 text-2xl"></i>
+                    <span>Guess the Kanji Meaning</span>
+                </button>
+
+                <!-- Guess Reading Quiz -->
+                <button id="click_quiz_reading"
+                    class="flex items-center gap-4 bg-white hover:bg-pink-100 text-pink-600 font-semibold py-4 px-8 rounded-2xl shadow-md text-lg transition w-full max-w-md border-l-8 border-pink-400">
+                    <i class="fas fa-book-open text-pink-500 text-2xl"></i>
+                    <span>Guess the Kanji Reading</span>
+                </button>
+            </div>
         </div>
-      
-        <!-- Navigation Buttons -->
-        <div class="flex justify-between mt-10">
-          <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
-            Previous
-          </button>
-          <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
-            Next
-          </button>
+
+
+        <div id="quiz_meaning" class=" hidden w-full md:py-6 md:mt-8 mb-16 text-gray-800 ">
+            <h2 class="text-3xl font-extrabold text-pink-600 mb-10 text-center">📝 Guess the Kanji Meaning</h2>
+
+
+            <div id="quizContainer_meaning"
+                class="bg-white p-8 rounded-2xl shadow-lg mb-12 mr-5 ml-5 border-4  border-pink-400">
+                {{-- <!-- Question -->
+                <div class="mb-8">
+                    <p class="text-xl font-bold text-gray-800 text-center">
+                      What is the meaning of the kanji <span class="text-pink-500 text-4xl">{{ $randomKanji['kanji'] }}</span>?
+                    </p>
+                  </div>
+                
+                  <!-- Answers -->
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                   @foreach ($options as $index => $op)
+                   <button class="bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+                    {{ $index+1 }}-{{ $op }}
+                  </button>
+              
+                       
+                   @endforeach
+                  </div> --}}
+
+
+
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-end mt-8 mr-6">
+                {{-- <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
+                      Previous
+                    </button> --}}
+                <button id="next_question"
+                    class=" hidden bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
+                    Next
+                </button>
+            </div>
+
         </div>
-      </div>
-      {{-- <div class="flex justify-center mt-10">
-        <button id="quiz_menu" class="flex items-center gap-3 bg-white hover:bg-pink-100 text-pink-600 font-bold py-3 px-8 rounded-2xl shadow-md text-lg transition border-l-8 border-pink-400">
-          <i class="fas fa-arrow-left text-pink-500 text-2xl"></i>
-          <span>Back to Menu</span>
-        </button>
-      </div> --}}
-      
-      
-  </div>
+        <div id="quiz_reading" class=" hidden w-full md:py-6 md:mt-8 mb-16 text-gray-800 ">
+            <h2 class="text-3xl font-extrabold text-pink-600 mb-10 text-center">📝 Guess the Kanji Reading</h2>
+
+
+            <div id="quizContainer_reading"
+                class="bg-white p-8 rounded-2xl shadow-lg mb-12 mr-5 ml-5 border-4  border-pink-400">
+
+
+
+
+            </div>
+           
+           
+
+
+        </div>
     </div>
     <!--/container-->
 
@@ -519,7 +524,6 @@
         user.classList.add('hidden');
 
         home_click.addEventListener("click", () => {
-            console.log("home");
 
             home.classList.remove('hidden');
             category.classList.add('hidden');
@@ -582,9 +586,6 @@
             quiz_meaning.classList.add('hidden');
             quiz_reading.classList.add('hidden');
 
-
-
-
         });
         click_quiz_meaning.addEventListener("click", () => {
 
@@ -596,9 +597,6 @@
             quiz.classList.add('hidden');
             quiz_reading.classList.add('hidden');
 
-
-
-
         });
         click_quiz_reading.addEventListener("click", () => {
 
@@ -609,7 +607,6 @@
             flashcard.classList.add('hidden');
             quiz.classList.add('hidden');
             quiz_meaning.classList.add('hidden');
-
 
 
 
@@ -639,10 +636,10 @@
                 .then(info => {
                     currentKanjiId = info.id;
                     console.log(currentKanjiId)
-                    localStorage.setItem("kanji_id",currentKanjiId);
-                    document.getElementById('kanji_id').value= currentKanjiId
+                    localStorage.setItem("kanji_id", currentKanjiId);
+                    document.getElementById('kanji_id').value = currentKanjiId
 
-            document.getElementById("reading").innerHTML = `
+                    document.getElementById("reading").innerHTML = `
               <strong>Kanji:</strong> ${info.kanji}<br>
               <strong>JLPT:</strong> N${info.jlpt}<br>
               <strong>Meanings:</strong> ${info.meanings.slice(0, 3).join(', ')}<br>
@@ -650,7 +647,7 @@
               <strong>Kunyomi:</strong> ${info.kun_readings.join(', ') || 'N/A'}<br>
               <strong>Grade:</strong> ${info.grade || 'N/A'}
             `;
-            document.getElementById('strok_order').innerHTML=`
+                    document.getElementById('strok_order').innerHTML = `
                               <img class="h-48 w-48 object-cover ..." src="${info.stroke_order}" />              
                               <img class="h-48 w-48 object-cover ..." src="${info.memory_trick}" />              
 
@@ -662,7 +659,7 @@
                     document.getElementById("result").innerText = "";
 
                 });
-               
+
         });
 
         let paintMode = false;
@@ -711,28 +708,28 @@
             canvas.erase();
             document.getElementById("result").innerText = "";
             document.getElementById("reading").innerHTML = "";
-            document.getElementById('strok_order').innerHTML="";
- 
+            document.getElementById('strok_order').innerHTML = "";
 
-            }
 
-// flashcard 
-           
-    let cards = @json($flashcardCard);
-    console.log(cards);
+        }
 
-    let currentCard=0;
+        // flashcard 
 
-    carousel=document.querySelector(".carousel");
-    prev=document.querySelector(".prev");
-    next=document.querySelector(".next");
-   renderCard();
-   
-function renderCard(){
-   carousel.innerHTML=`
+        let cards = @json($flashcard);
+        console.log(cards);
+
+        let currentCard = 0;
+
+        carousel = document.querySelector(".carousel");
+        prev = document.querySelector(".prev");
+        next = document.querySelector(".next");
+        renderCard();
+
+        function renderCard() {
+            carousel.innerHTML = `
     <div class="relative w-[28rem] h-[20rem] bg-white rounded-3xl shadow-2xl border-4 border-pink-400 cursor-pointer transform transition hover:scale-105 group">
         <!-- Front of the card -->
-        <div class="absolute inset-0 flex items-center justify-center text-[6rem] font-extrabold text-pink-600 group-hover:hidden">
+        <div  class="absolute inset-0 flex items-center justify-center text-[6rem] font-extrabold text-pink-600 group-hover:hidden">
           ${cards[currentCard].kanji}
         </div> 
                                      
@@ -746,29 +743,269 @@ function renderCard(){
       </div>
 
    `
-  
 
-}
-next.addEventListener('click',function(e){
-    if(currentCard>=cards.length){
-        return;
-    }
-    currentCard++
-    renderCard();
 
-})
+        }
+        next.addEventListener('click', function(e) {
+            if (currentCard >= cards.length) {
+                return;
+            }
+            currentCard++
+            renderCard();
 
-prev.addEventListener('click',function(e){
-    if(currentCard<=0){
-        return;
-    }
-    currentCard--;
-    renderCard();
+        })
 
-})
+        prev.addEventListener('click', function(e) {
+            if (currentCard <= 0) {
+                return;
+            }
+            currentCard--;
+            renderCard();
+
+        })
+
+        // quiz_meaning
+
+
+        let quizs = @json($quizs);
+        console.log(quizs);
+        let questionNumber = 0
+        let struggledKanjiMeaning = []
+        getQuiz();
+
+        function getQuiz() {
+            if (!quizs[questionNumber]) {
+                console.warn('No more questions left.');
+                return;
+            }
+
+            document.getElementById('quizContainer_meaning').innerHTML = `
+        <!-- Question -->
+        <div class="mb-8">
+          <p class="text-xl font-bold text-gray-800 text-center">
+            What is the meaning of the kanji <span class="text-pink-500 text-4xl">
+                ${quizs[questionNumber].kanji}
+                </span>?
+          </p>
+        </div>
+      
+        <!-- Answers -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          ${quizs[questionNumber].options.map(op=>`
+               <button class=" answer bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+                ${op}
+              </button>
+
+              `).join('')}
+        </div>
+         
+      <div class="flex justify-end mt-8 mr-6">
+        
+                   
+                    <button type="submit" id="next_question" class=" hidden bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
+                      Next
+                    </button>
+                   
+                  </div>
+                 
+       
+`
+
+
+            document.querySelectorAll('.answer').forEach(button => {
+
+                button.addEventListener('click', () => {
+                    button.disabled = true;
+
+                    selectedOption = button.innerText.trim();
+                    correctAnswer = quizs[questionNumber].correctAnswer;
+
+
+
+                    // console.log(quizs.length)
+                    if (selectedOption == correctAnswer) {
+
+                        button.style.background = 'green';
+                        
+                        button.style.color = 'white';
+                        document.getElementById('next_question').classList.remove('hidden');
+
+
+
+                        // alert('good job ')
+                        // questionNumber++;
+                        console.log(questionNumber)
+
+
+
+                        // getQuiz();
+
+
+                    } else {
+                        struggledKanjiMeaning[struggledKanjiMeaning.length] = quizs[questionNumber].id
+                        // quizs[questionNumber].isStruggled = 'true';
+                        console.log(quizs[questionNumber].isStruggled)
+
+                        button.style.background = 'red';
+                        button.style.color = 'white';
+                        // alert('❌ Wrong! Try again.');
+                    }
+
+
+
+
+
+                })
+            });
+            document.getElementById('next_question').addEventListener('click', () => {
+                console.log('next btn')
+                document.getElementById('next_question').classList.add('hidden');
+
+                questionNumber++;
+                if (questionNumber == quizs.length) {
+
+                    review()
+
+
+                }
+                getQuiz();
+            });
+
+        }
+
+
+
+        function review() {
+            console.log(struggledKanjiMeaning);
+            document.getElementById('quizContainer_meaning').innerHTML = `
+         <button id="quiz_again" class=" bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            do quiz again
+          </button>
+      <form id="" action="{{ route('Struggled_kanji') }}" method="POST">
+@csrf
+         <button id="back_home" class=" bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            go home
+          </button>
+           <input type="text" id="kanji_id" name="kanji_id" value="${struggledKanjiMeaning}">
      
+               </form>           
+
+        `
+            document.getElementById('quiz_again').addEventListener('click', () => {
+
+                questionNumber = 0;
+                getQuiz();
+            })
 
 
+        }
+
+        // --quiz reading
+
+
+        let kanji_reading = @json($quizs_reading);
+
+        let 質問 = 0;
+        
+        let struggledKanjiReading= []
+        // console.log(kanji_reading[question].kanji)
+        getQuizReading();
+
+        function getQuizReading() {
+          if (!kanji_reading[質問]) {
+                console.warn('No more questions left.');
+                return;
+            }
+            document.getElementById('quizContainer_reading').innerHTML = `
+   <!-- Question -->
+        <div class="mb-8">
+          <p class="text-xl font-bold text-gray-800 text-center">
+            What is the reading of the kanji <span class="text-pink-500 text-4xl">${kanji_reading[質問].kanji}</span>?
+          </p>
+        </div>
+      
+        <!-- Answers -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+         ${kanji_reading[質問].options.map(op=>`
+              <button  class="readingAnswer bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+                ${op}
+              </button>
+             `).join('')}
+      
+    
+        </div>
+         <!-- Navigation Buttons -->
+            <div class="flex justify-end mt-8 mr-6">
+             
+                <button id="next"
+                    class=" hidden bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg shadow transition">
+                    Next
+                </button>
+            </div>
+  `
+            document.querySelectorAll('.readingAnswer').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    selected = btn.innerText;
+
+                    correct = kanji_reading[質問].correctAnswer;
+
+
+                    if (selected == correct) {
+                        btn.style.background = 'green';
+                        btn.style.color = 'white';
+                        document.getElementById('next').classList.remove('hidden');
+
+
+                    } else {
+                      struggledKanjiReading[struggledKanjiReading.length] = kanji_reading[質問].id
+console.log(struggledKanjiReading)
+                        btn.style.background = 'red';
+                        btn.style.color = 'white';
+
+                    }
+                })
+
+            });
+            document.getElementById('next').addEventListener('click', () => {
+            document.getElementById('next').classList.add('hidden');
+            質問++;
+            if (質問 == kanji_reading.length) {
+                review_reading();
+            }
+            getQuizReading();
+
+
+
+        })
+           
+        }
+        
+      
+
+        function review_reading() {
+            document.getElementById('quizContainer_reading').innerHTML = `
+  <button id="quizReading_again" class=" bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            do quiz again
+          </button>
+      <form id="" action="{{ route('Struggled_kanji_reading') }}" method="POST">
+@csrf
+
+         <button id="back_home" class=" bg-pink-100 hover:bg-pink-200 text-pink-600 font-semibold py-4 px-6 rounded-lg shadow text-lg transition w-full">
+            go home
+          </button>
+             <input type="text" name="kanji_id_reading" value="${struggledKanjiReading}">
+     
+               </form>   
+  `
+
+            document.getElementById('quizReading_again').addEventListener('click', () => {
+
+                質問 = 0;
+                getQuizReading();
+
+            })
+                
+        }
     </script>
 
 
