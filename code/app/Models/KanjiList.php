@@ -11,6 +11,7 @@ class KanjiList extends Model
         'user_id',
         'kanji_id',
         'isStruggled_meaning',
+        'isStruggled_reading',
 
     ];
 }

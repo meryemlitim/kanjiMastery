@@ -72,8 +72,9 @@ $quizs[]=$quiz;
         }
         // get Struggled Kanji Meaning
         $getStruggledKanjiMeaning= $user->savedKanjis()->wherePivot('isStruggled_meaning','=',true)->get();
+        $getStruggledKanjiReading= $user->savedKanjis()->wherePivot('isStruggled_reading','=',true)->get();
             // dd($getStruggledKanjiMeaning);    
                 $progress=40;      
-        return view('user-dashboard', compact('user','savedKanjis','flashcard','quizs','quizs_reading','getStruggledKanjiMeaning','progress'));
+        return view('user-dashboard', compact('user','savedKanjis','flashcard','quizs','quizs_reading','getStruggledKanjiMeaning','progress','getStruggledKanjiReading'));
       }
 }

@@ -33,4 +33,5 @@ Route::get('/kanji/{character}',[KanjiController::class,'getKanji']);
 // save kanji
 Route::post('/add_kanjiList', [KanjiListController::class, 'saveUserKanji'])->name('add_kanjiList');
 Route::post('/Struggled_kanji', [KanjiListController::class, 'struggledKanjiMeaning'])->name('Struggled_kanji');
+Route::post('/Struggled_kanji_reading', [KanjiListController::class, 'struggledKanjiReading'])->name('Struggled_kanji_reading');
 
