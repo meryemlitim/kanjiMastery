@@ -31,11 +31,10 @@ class AuthentificationController extends Controller
         $user->password=$request->password;   
         $res=$user->save();
         if($res){
-            return back()->with('success','you have registered');
+            return redirect()->route('login');
         } else{
             return back()->with('fail','something wrong');
         }                  
-         return redirect(view("auth.log-in"));
     }
     public function log_in(Request $request){
         $request->validate([
@@ -71,12 +70,18 @@ class AuthentificationController extends Controller
         
     }
 
-    public function logout(Request $request)
-{
-    if ($request->session()->has('loginId')) {
-        $request->session()->pull('loginId');
-    }
-    return redirect('/')->with('success', 'You have logged out successfully.');
-}
+//     public function logout(Request $request)
+// {
+//     if ($request->session()->has('loginId')) {
+//         $request->session()->pull('loginId');
+//     }
+//     return redirect('/')->with('success', 'You have logged out successfully.');
+// }
+public function logout(Request $request)
+    {
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
+        return redirect('/');
+    }
 }  

@@ -48,6 +48,19 @@ class KanjiListController extends Controller
         return redirect()->route('user_dashboard');
     }
 
+
+    // public function deleteKanji(Request $request){
+    //     // $kanji=$request->ID_kanji;
+
+    //     $kanji=KanjiList::where('kanji_id',$request->ID_kanji)->where('user_id',Auth::user()->id)->first();
+    //     // dd($kanji);
+    //     if($kanji){
+    //         $kanji->delete();
+    
+    //         return redirect()->route('user_dashboard');
+    //     }
+
+    // }
    
 }
 

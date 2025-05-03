@@ -23,8 +23,6 @@ class KanjiController extends Controller
         ]);
         return redirect()->route('admin_dashboard');
 
-                 
-       
 
     }
 

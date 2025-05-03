@@ -51,7 +51,7 @@
 
                     <div class="relative text-sm">
                         <button id="userButton" class="flex items-center focus:outline-none mr-3">
-                            <img class="w-10 h-10 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of User">
+                            <img class="w-10 h-10 rounded-full mr-4" src="https://thicc-uwu.mywaifulist.moe/pending/waifus/vz2w3qrSjLVct05NrnUUBQI5Hy6Krn1Xh4PuspmF.jpg" alt="Avatar of User">
                             <span class="hidden md:inline-block">Hi, {{ $user->name }} </span>
                             <svg class="pl-2 h-2" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -68,9 +68,7 @@
                                 <li><a href="#"
                                         class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">My
                                         account</a></li>
-                                <li><a href="#"
-                                        class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Notifications</a>
-                                </li>
+                               
                                 <li>
                                     <hr class="border-t mx-2 border-gray-400">
                                 </li>
@@ -108,7 +106,7 @@
                 <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
                     <li id="home_click" class="mr-6 my-2 md:my-0">
                         <a href="#"
-                            class="block py-1 md:py-3 pl-1 align-middle text-pink-600 no-underline hover:text-pink-900 border-b-2 border-pink-600 hover:border-pink-600">
+                            class="block py-1 md:py-3 pl-1 align-middle text-pink-600 no-underline hover:text-pink-900 ">
                             <i class="fas fa-home fa-fw mr-3 text-pink-800"></i><span
                                 class="pb-1 md:pb-0 text-sm">Home</span>
                         </a>
@@ -117,14 +115,14 @@
                         <a href="#"
                             class="block py-1 md:py-3 pl-1 align-middle text-pink-600 no-underline hover:text-pink-900 border-b-2 border-white hover:border-pink-500">
                             <i class="fa fa-pencil-alt fa-fw mr-3"></i>
-                            <span class="pb-1 md:pb-0 text-sm">manage kanji</span>
+                            <span class="pb-1 md:pb-0 text-sm">Kanji Management</span>
                         </a>
                     </li>
                     <li id="category_click" class="mr-6 my-2 md:my-0">
                         <a href="#" 
                             class="block py-1 md:py-3 pl-1 align-middle text-pink-600 no-underline hover:text-pink-900 border-b-2 border-white hover:border-pink-500">
                             <i class="fa fa-list fa-fw mr-3"></i>
-                            <span class="pb-1 md:pb-0 text-sm">manage users</span>
+                            <span class="pb-1 md:pb-0 text-sm">Users Management</span>
                         </a>
                     </li>
 
@@ -143,8 +141,8 @@
         <div id="home" class="hidden w-full px-6 mb-16 md:py-6 md:mt-8 text-gray-800 leading-relaxed relative">
 <!-- Admin Dashboard Home -->
 <div class="w-full px-6 py-10 md:py-16 bg-pink-50 rounded-2xl shadow-lg">
-    <h1 class="text-4xl font-extrabold text-pink-600 mb-6 text-center">👑 Welcome, Admin!</h1>
-    <p class="text-center text-gray-700 mb-10 text-lg">Here’s a quick overview of your kingdom — keep guiding learners to Kanji mastery!</p>
+    <h1 class="text-4xl font-extrabold text-pink-600 mb-6 text-center">Hello, {{$user->name}}</h1>
+    <p class="text-center text-gray-700 mb-10 text-lg">Welcome back to your admin dashboard!</p>
   
     <!-- Stats Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
@@ -159,21 +157,21 @@
       <div class="bg-white border-4 border-pink-300 rounded-xl p-6 shadow-md flex items-center justify-between">
         <div>
           <h2 class="text-xl font-bold text-pink-600 mb-1">Registered Users</h2>
-          <p class="text-3xl font-extrabold text-gray-800">{{ $user_number }}</p>
+          <p class="text-3xl font-extrabold text-gray-800">{{ $user_number }} </p>
         </div>
         <div class="text-pink-400 text-5xl">👥</div>
       </div>
     </div>
   
     <!-- Management Buttons -->
-    <div class="flex flex-col md:flex-row gap-6 justify-center">
+    {{-- <div class="flex flex-col md:flex-row gap-6 justify-center">
       <button class="bg-pink-500 hover:bg-pink-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition">
         📘 Manage Kanjis
       </button>
       <button class="bg-pink-500 hover:bg-pink-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition">
         👤 Manage Users
       </button>
-    </div>
+    </div> --}}
   </div>
           </div>
 
@@ -217,18 +215,18 @@
       </div>
   
       <div>
-        <label class="block text-gray-700 font-semibold mb-1">Radical</label>
-        <input name="radical" type="number" placeholder="Radical Number (e.g., 140)" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
+        <label class="block text-gray-700 font-semibold mb-1">Strokes Number</label>
+        <input name="radical" type="number" placeholder="Example: 7" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400">
       </div>
   
       <div>
         <label class="block text-gray-700 font-semibold mb-1">Stroke Order</label>
-        <textarea name="stroke_order" placeholder="Describe or paste stroke order here..." class="w-full p-3 border rounded-lg resize-none h-32 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
+        <textarea name="stroke_order" placeholder="Paste stroke order image link here..." class="w-full p-3 border rounded-lg resize-none h-32 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
       </div>
   
       <div class="md:col-span-2">
         <label class="block text-gray-700 font-semibold mb-1">Memory Trick</label>
-        <textarea name="memory_trick" placeholder="Example: Think of a flower blooming for spring festival" class="w-full p-3 border rounded-lg resize-none h-28 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
+        <textarea name="memory_trick" placeholder="Paste Memory Trick image link here..." class="w-full p-3 border rounded-lg resize-none h-28 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
       </div>
   
       <div class="md:col-span-2">
@@ -291,7 +289,7 @@
           
 <!-- Manage Users Section -->
 <div class="bg-white p-8 rounded-2xl shadow-lg border-l-8 border-pink-400">
-    <h2 class="text-3xl font-extrabold text-pink-600 mb-6">👥 Manage Users</h2>
+    <h2 class="text-3xl font-extrabold text-pink-600 mb-6">👥 Users Management</h2>
   
     <div class="overflow-x-auto">
       <table class="min-w-full bg-white border rounded-lg overflow-hidden">
@@ -300,7 +298,7 @@
             <th class="py-3 px-4 text-left">Name</th>
             <th class="py-3 px-4 text-left">Email</th>
             <th class="py-3 px-4 text-left">Role</th>
-            <th class="py-3 px-4 text-center">Status</th>
+            {{-- <th class="py-3 px-4 text-center">Status</th> --}}
             <th class="py-3 px-4 text-center">Actions</th>
           </tr>
         </thead>
@@ -312,12 +310,12 @@
             <td class="py-3 px-4">
               <span class="bg-pink-200 text-pink-700 px-3 py-1 rounded-full text-sm font-semibold">{{ $user->role }}</span>
             </td>
-            <td class="py-3 px-4 text-center">
+            {{-- <td class="py-3 px-4 text-center">
               <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-semibold">Active</span>
-            </td>
+            </td> --}}
             <td class="py-3 px-4 text-center space-x-2">
-              <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded shadow text-sm">View</button>
-              <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded shadow text-sm">Edit</button>
+              {{-- <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded shadow text-sm">View</button>
+              <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded shadow text-sm">Edit</button> --}}
               <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded shadow text-sm">Delete</button>
             </td>
           </tr>
@@ -330,11 +328,7 @@
     </div>
   </div>
     </div>
-  <div id="flashcard" class=" hidden w-full md:py-6 md:mt-8 mb-16 text-gray-800 ">
-
-  
-  
-  </div>
+ 
     </div>
     <!--/container-->
 
@@ -405,9 +399,7 @@
         const home = document.getElementById("home");
         const category = document.getElementById("category");
         const user = document.getElementById("user");
-        const flashcard = document.getElementById("flashcard");
         const home_click = document.getElementById("home_click");
-        const flashcard_click = document.getElementById("flashcard_click");
         const category_click = document.getElementById("category_click");
         const user_click = document.getElementById("user_click");
 
@@ -422,7 +414,10 @@
             home.classList.remove('hidden');
             category.classList.add('hidden');
             user.classList.add('hidden');
-            flashcard.classList.add('hidden');
+
+            user_click.style.borderBottom = ""
+            category_click.style = ""
+            home_click.style = "2px solid #D5006D";
         });
 
         category_click.addEventListener("click", () => {
@@ -430,7 +425,12 @@
             home.classList.add('hidden');
             category.classList.remove('hidden');
             user.classList.add('hidden');
-            flashcard.classList.add('hidden');
+
+            category_click.style.borderBottom = "2px solid #D5006D"
+            user_click.style.removeProperty("border-bottom");
+            home_click.style.removeProperty("border-bottom");
+
+
 
         });
         user_click.addEventListener("click", () => {
@@ -438,103 +438,16 @@
             home.classList.add('hidden');
             category.classList.add('hidden');
             user.classList.remove('hidden');
-            flashcard.classList.add('hidden');
+
+            user_click.style.borderBottom = "2px solid #D5006D"
+            category_click.style = ""
+            home_click.style = "";
 
         });
-        flashcard_click.addEventListener("click", () => {
-
-            home.classList.add('hidden');
-            category.classList.add('hidden');
-            user.classList.add('hidden');
-            flashcard.classList.remove('hidden');
-
-        });
+       
 
 
-
-        const canvas = new handwriting.Canvas(document.getElementById("canvas"), 3);
-        canvas.setLineWidth(5);
-
-        canvas.setOptions({
-            language: "ja",
-            numOfReturn: 1
-        });
-
-        canvas.setCallBack(function(data, err) {
-            if (err) {
-                alert("Recognition error");
-                return;
-            }
-
-            const kanji = data;
-            document.getElementById("result").innerText = kanji;
-
-            fetch(`https://kanjiapi.dev/v1/kanji/${kanji}`)
-                .then(res => res.json())
-                .then(info => {
-                    document.getElementById("reading").innerHTML = `
-              <strong>Kanji:</strong> ${info.kanji}<br>
-              <strong>JLPT:</strong> N${info.jlpt}<br>
-              <strong>Meanings:</strong> ${info.meanings.slice(0, 3).join(', ')}<br>
-              <strong>Onyomi:</strong> ${info.on_readings.join(', ') || 'N/A'}<br>
-              <strong>Kunyomi:</strong> ${info.kun_readings.join(', ') || 'N/A'}<br>
-              <strong>Grade:</strong> ${info.grade || 'N/A'}
-            `;
-                })
-                .catch(() => {
-                    document.getElementById("reading").innerText = "❌ This is not a Kanji.";
-                    document.getElementById("result").innerText = "";
-
-                });
-        });
-
-        let paintMode = false;
-        let x = 0,
-            y = 0;
-
-        document.onmousemove = function(e) {
-            x = e.clientX;
-            y = e.clientY;
-        };
-
-        document.addEventListener("keydown", event => {
-            if (event.code === "KeyP" && !paintMode) {
-                paintMode = true;
-                document.getElementById("paintMode").innerText = "ON";
-                sendMouseEvent("mousedown");
-            }
-        });
-
-        document.addEventListener("keyup", event => {
-            if (event.code === "KeyP" && paintMode) {
-                paintMode = false;
-                document.getElementById("paintMode").innerText = "OFF";
-                sendMouseEvent("mouseup");
-            }
-        });
-
-        function sendMouseEvent(eventName) {
-            const element = document.getElementById("canvas");
-            const clickEvent = new MouseEvent(eventName, {
-                view: window,
-                bubbles: true,
-                cancelable: true,
-                clientX: x,
-                clientY: y
-            });
-            element.dispatchEvent(clickEvent);
-        }
-
-        function recognizeKanji() {
-            canvas.recognize();
-        }
-
-
-        function eraseAll() {
-            canvas.erase();
-            document.getElementById("result").innerText = "";
-            document.getElementById("reading").innerHTML = "";
-        }
+       
     </script>
 
 

@@ -12,6 +12,7 @@ class UserController extends Controller
                    
         $user= Auth::user();
         $savedKanjis = $user->savedKanjis;
+        
         // dd($savedKanjis);
 
         $flashcard=$savedKanjis->map(function($kanji){
@@ -22,6 +23,7 @@ class UserController extends Controller
             'jlpt' => $kanji->jlpt_level,
             'meanings' => explode(',', $kanji->meaning),
             'on_readings' => explode(',', $kanji->reading_on),
+            'memory_trick'=>$kanji->memory_trick,
             'kun_readings' => $kanji->reading_kon,
             'grade' => $kanji->grade ?? null
 
@@ -31,6 +33,7 @@ class UserController extends Controller
         $quizs=[];
         $quizs_reading=[];
          
+       if(count($savedKanjis)>=4){
         foreach($flashcard as $flash){
           $otherMinings=$flashcard->where('kanji','!=',$flash['kanji'])->pluck('meanings')->flatten()->random(3)->toArray();
           $correctOption=$flash['meanings'];
@@ -70,31 +73,37 @@ $quizs[]=$quiz;
           $quizs_reading[]=$quiz_reading;
 
         }
+       }
         // get Struggled Kanji Meaning
         $getStruggledKanjiMeaning= $user->savedKanjis()->wherePivot('isStruggled_meaning','=',true)->get();
         $getStruggledKanjiReading= $user->savedKanjis()->wherePivot('isStruggled_reading','=',true)->get();
-            // dd($getStruggledKanjiMeaning);    
-            // $countMasterdKanji=count($savedKanjis)-count($getStruggledKanjiMeaning!);
-            $countMasterdKanjiMeaning=count($savedKanjis)-count($getStruggledKanjiMeaning);
-            $countMasterdKanjiReading=count($savedKanjis)-count($getStruggledKanjiReading);
-            $progress=($countMasterdKanjiMeaning+$countMasterdKanjiReading)*100/count($savedKanjis);    
+        $totalSavedKanji=count($savedKanjis);
+        if($totalSavedKanji<=3){
+          $countMasterdKanjiMeaning=0;
+          $countMasterdKanjiReading=0;
+          $progress=0;
+          $msg='Good start! Keep learning.';
+        }else{
+          
+              $countMasterdKanjiMeaning=count($savedKanjis)-count($getStruggledKanjiMeaning);
+              $countMasterdKanjiReading=count($savedKanjis)-count($getStruggledKanjiReading);
+              $progress = (int)( (($countMasterdKanjiMeaning + $countMasterdKanjiReading) * 100) / (2 * count($savedKanjis)) );
+              // dd($progress);
+              if ($progress === 100) {
+                $msg = 'Bravo! All kanji mastered! 🎉';
+            } elseif ($progress >= 67) {
+                $msg = 'Almost done! Stay focused.';
+            } elseif ($progress >= 34) {
+                $msg = "You're making great progress!";
+            } else {
+                $msg = 'Good start! Keep learning.';
+            }
             
-            $totalSavedKanji=count($savedKanjis);
-            if($progress>=100){
-              $msg='Bravo! All kanji mastered! 🎉';
-            }
-            if($progress>=67 && $progress<=99){
-              $msg='Almost done! Stay focused.';
-            }
-            if($progress>=34 && $progress<=66){
-              $msg="You're making great progress!";
-            }
-            if($progress<=33){
-              $msg='Good start! Keep learning.';
-            }
-            if($progress==0){
-              $msg="Let's begin your kanji journey!";
-            }
+              
+           
+
+        }
+              
 
         return view('user-dashboard', compact('user','savedKanjis','flashcard','quizs','quizs_reading','getStruggledKanjiMeaning','progress','getStruggledKanjiReading','msg','totalSavedKanji','countMasterdKanjiMeaning','countMasterdKanjiReading'));
       }
