@@ -27,8 +27,8 @@ class KanjiListController extends Controller
         $id_string=$request->kanji_id;
         $id_array=explode(',',$id_string);
         
-      KanjiList::whereIn('kanji_id',$id_array)->where('user_id',Auth::user()->id)->update(['isStruggled_meaning'=>true]);
-      KanjiList::whereNotIn('kanji_id',$id_array)->where('user_id',Auth::user()->id)->update(['isStruggled_meaning'=>false]);
+      KanjiList::whereIn('kanji_id',$id_array)->where('user_id',Auth::user()->id)->update(['isStruggled_meaning'=>'true']);
+      KanjiList::whereNotIn('kanji_id',$id_array)->where('user_id',Auth::user()->id)->update(['isStruggled_meaning'=>'false']);
 
         
         
@@ -39,8 +39,8 @@ class KanjiListController extends Controller
         $id_string=$request->kanji_id_reading;
         $id_array=explode(',',$id_string);
         
-      KanjiList::whereIn('kanji_id',$id_array)->where('user_id',Auth::user()->id)->update(['isStruggled_reading'=>true]);
-      KanjiList::whereNotIn('kanji_id',$id_array)->where('user_id',Auth::user()->id)->update(['isStruggled_reading'=>false]);
+      KanjiList::whereIn('kanji_id',$id_array)->where('user_id',Auth::user()->id)->update(['isStruggled_reading'=>'true']);
+      KanjiList::whereNotIn('kanji_id',$id_array)->where('user_id',Auth::user()->id)->update(['isStruggled_reading'=>'false']);
 
         
         
@@ -48,6 +48,19 @@ class KanjiListController extends Controller
         return redirect()->route('user_dashboard');
     }
 
+
+    public function deleteKanji(Request $request){
+        // $kanji=$request->ID_kanji;
+
+        $kanji=KanjiList::where('kanji_id',$request->ID_kanji)->where('user_id',Auth::user()->id)->first();
+        // dd($kanji);
+        if($kanji){
+            $kanji->delete();
+    
+            return redirect()->route('user_dashboard');
+        }
+
+    }
    
 }
 

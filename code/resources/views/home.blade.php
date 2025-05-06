@@ -36,9 +36,14 @@
                 <a href="about.html" class="text-black-500 font-extrabold hover:text-pink-600">About</a>
                 <a href="contact.html" class="text-black-500 font-extrabold hover:text-pink-600">Contact</a>
             </div>
+            @auth
+            <a href="{{ route('logout') }}" class="hidden lg:block bg-black text-white py-2 px-4 rounded hover:bg-pink-500 transition">LOGOUT</a>
+            @endauth
+            @guest
             <a href="/login" class="hidden lg:block bg-black text-white py-2 px-4 rounded hover:bg-pink-500 transition">LOG IN</a>
+            @endguest
         </nav>
-    </div>
+    </div> 
 
         <div class="relative z-10 text-center text-black py-28">
             <h1 class="text-4xl sm:text-6xl font-extrabold">Welcome to:</h1>
@@ -63,10 +68,7 @@
                 <h2 class="text-2xl font-bold text-black-600 mb-4">What Kanji Mastery About?</h2>
                 <div class="w-12 h-1 bg-back mb-4"></div>
                 <p class="text-black-700 mb-6">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat.
+                    Kanji Mastery is a platform where users can draw a kanji to get its meaning, readings, JLPT level, and stroke order. It also shows memory tricks and example sentences to help users understand how the kanji is used. After exploring the details of a kanji, users can save it to their personal list. This makes it easy to review and organize the kanji they are learning. Users can then practice with flashcards or quizzes to test their knowledge. Kanji Mastery helps make learning kanji easier, more fun, and more effective.
                 </p>
                 <a href="#" class="bg-black text-white px-6 py-2 rounded-lg font-semibold shadow-md hover:bg-pink-500 transition flex justify-center items-center">READ MORE</a>            </div>
         </div>
@@ -77,16 +79,16 @@
                 From beginner to master<br><br>Your kanji journey starts here!
             </h2>
             <a class="mt-8 xl:mt-12 px-12 py-5 text-lg font-medium leading-tight inline-block bg-pink-700 rounded-full shadow-xl border border-transparent hover:bg-pink-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-sky-999 focus:ring-sky-500"
-                href="#">Get
+                href="{{ route('signup') }}">Get
                 started</a>
             <div class="mt-14 xl:mt-20">
                 <nav class="flex flex-wrap justify-center text-lg font-medium">
+                    <div class="px-5 py-2"><a href="#">Home</a></div>
                     <div class="px-5 py-2"><a href="#">Contact</a></div>
                     <div class="px-5 py-2"><a href="#">About</a></div>
-                    <div class="px-5 py-2"><a href="#">Courses</a></div>
                    
                 </nav> 
-                <p class="mt-7 text-base">© 2025 XYZ, LLC</p>
+                <p class="mt-7 text-base">© 2025 Kanji Mastery, Meryem Litim.</p>
             </div>
         </div>
     </footer>

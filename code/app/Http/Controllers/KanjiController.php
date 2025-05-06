@@ -22,9 +22,7 @@ class KanjiController extends Controller
             'stroke_order'=>$request->stroke_order,
         ]);
         return redirect()->route('admin_dashboard');
-
-                 
-       
+         
 
     }
 
