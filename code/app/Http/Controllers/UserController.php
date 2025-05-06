@@ -75,8 +75,8 @@ $quizs[]=$quiz;
         }
        }
         // get Struggled Kanji Meaning
-        $getStruggledKanjiMeaning= $user->savedKanjis()->wherePivot('isStruggled_meaning','=',true)->get();
-        $getStruggledKanjiReading= $user->savedKanjis()->wherePivot('isStruggled_reading','=',true)->get();
+        $getStruggledKanjiMeaning= $user->savedKanjis()->wherePivot('isStruggled_meaning','=','true')->get();
+        $getStruggledKanjiReading= $user->savedKanjis()->wherePivot('isStruggled_reading','=','true')->get();
         $totalSavedKanji=count($savedKanjis);
         if($totalSavedKanji<=3){
           $countMasterdKanjiMeaning=0;

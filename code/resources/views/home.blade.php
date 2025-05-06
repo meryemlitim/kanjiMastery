@@ -43,7 +43,7 @@
             <a href="/login" class="hidden lg:block bg-black text-white py-2 px-4 rounded hover:bg-pink-500 transition">LOG IN</a>
             @endguest
         </nav>
-    </div>
+    </div> 
 
         <div class="relative z-10 text-center text-black py-28">
             <h1 class="text-4xl sm:text-6xl font-extrabold">Welcome to:</h1>

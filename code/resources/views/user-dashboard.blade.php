@@ -737,10 +737,10 @@
               <strong>Kanji:</strong> ${info.kanji}<br>
               <strong>JLPT:</strong> N${info.jlpt}<br>
               <strong>Meanings:</strong> ${info.meanings.slice(0, 3).join(', ')}<br>
-              <strong>Onyomi:</strong> ${info.on_readings.join(', ') || 'N/A'}<br>
-              <strong>Kunyomi:</strong> ${info.kun_readings.join(', ') || 'N/A'}<br>
-              <strong>Grade:</strong> ${info.grade || 'N/A'}
-            `;
+              <strong>Onyomi:</strong> ${info.on_readings.join(', ') || 'No onyomi reading'}<br>
+              <strong>Kunyomi:</strong> ${info.kun_readings.join(', ') || 'No kunyomi reading'}<br>
+              <strong>Grade:</strong> ${info.grade }
+            `; 
                     document.getElementById('strok_order').innerHTML = `
                               <img class="h-48 w-48 object-cover ..." src="${info.stroke_order}" />              
                               <img class="h-48 w-48 object-cover ..." src="${info.memory_trick}" />              
