@@ -267,7 +267,7 @@
               <td class="py-3 px-4">{{ $kanji->meaning }}</td>
               <td class="py-3 px-4">JLPT N{{ $kanji->jlpt_level }}</td>
               <td class="py-3 px-4 text-center space-x-2">
-                <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded shadow">Edit</button>
+                {{-- <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded shadow">Edit</button> --}}
                 <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded shadow">Delete</button>
               </td>
             </tr>
@@ -299,7 +299,7 @@
             <th class="py-3 px-4 text-left">Email</th>
             <th class="py-3 px-4 text-left">Role</th>
             {{-- <th class="py-3 px-4 text-center">Status</th> --}}
-            <th class="py-3 px-4 text-center">Actions</th>
+            {{-- <th class="py-3 px-4 text-center">Actions</th> --}}
           </tr>
         </thead>
         <tbody class="text-gray-700 divide-y divide-pink-100">
@@ -313,11 +313,11 @@
             {{-- <td class="py-3 px-4 text-center">
               <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-semibold">Active</span>
             </td> --}}
-            <td class="py-3 px-4 text-center space-x-2">
-              {{-- <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded shadow text-sm">View</button>
-              <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded shadow text-sm">Edit</button> --}}
+            {{-- <td class="py-3 px-4 text-center space-x-2">
+              <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded shadow text-sm">View</button>
+              <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded shadow text-sm">Edit</button>
               <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded shadow text-sm">Delete</button>
-            </td>
+            </td> --}}
           </tr>
               
           @endforeach
